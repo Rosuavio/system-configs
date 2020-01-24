@@ -18,15 +18,23 @@
   # Allows hardware u3f devices to be used in apps, like the yubikey in ff via chalange response.
   hardware.u2f.enable = true;
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.editor = false;
-  boot.loader.efi = {
-    canTouchEfiVariables = true;
-  };
-  boot.loader.timeout = null;
-  boot.plymouth.enable = true;
+  # TODO 2020.01.24 (RP) - Find a way to change the esp to "/esp"
+  boot.loader = {  
+    # Use the systemd-boot EFI boot loader.
+    systemd-boot = {
+      enable = true;
+      editor = false;
+    };
 
+    efi = {
+      # efiSysMountPoint = "/boot/efi";
+      canTouchEfiVariables = true;
+    };
+
+    timeout = null;
+  };
+
+  boot.plymouth.enable = true;
   boot.initrd.luks.devices = [
     { 
       name = "NixOS";
@@ -34,7 +42,7 @@
       preLVM = true;
     }
   ];
- 
+
   networking.hostName = "pulsar";
   networking.networkmanager.enable = true;
   
