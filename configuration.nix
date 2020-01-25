@@ -51,7 +51,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     plasma-browser-integration
      git
   ];
 
@@ -68,9 +67,18 @@
 
     libinput.enable = true;
     wacom.enable = true;
+    displayManager = {
+      gdm.enable = true;
+      # sddm.enable = true;
+    };
 
-    displayManager.sddm.enable = true;
-    desktopManager.plasma5.enable = true;
+    desktopManager = {
+      xterm.enable = false;
+      # xfce.enable = true;
+      # mate.enable = true;
+      gnome3.enable = true;
+      # plasma5.enable = true;
+    };
   };  
 
   users.mutableUsers = false;
