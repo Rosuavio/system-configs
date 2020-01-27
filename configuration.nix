@@ -51,7 +51,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     git
+    home-manager
   ];
 
   services.throttled.enable = true;
@@ -82,10 +82,6 @@
   };  
 
   users.mutableUsers = false;
-
-  # imports = [
-  #   "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos"
-  # ];
 
   # security.pam.u2f = {
   #    enable = true;
