@@ -35,13 +35,6 @@
   };
 
   boot.plymouth.enable = true;
-  boot.initrd.luks.devices = [
-    { 
-      name = "NixOS";
-      device = "/dev/disk/by-uuid/0829deac-97c3-4ff7-91d1-a11de325e882";
-      preLVM = true;
-    }
-  ];
 
   networking.hostName = "pulsar";
   networking.networkmanager.enable = true;
