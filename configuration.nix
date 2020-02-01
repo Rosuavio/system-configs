@@ -34,7 +34,8 @@
     timeout = null;
   };
 
-  boot.plymouth.enable = true;
+  # Causing issues rn
+  # boot.plymouth.enable = true;
 
   networking.hostName = "pulsar";
   networking.networkmanager.enable = true;
