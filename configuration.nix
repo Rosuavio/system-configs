@@ -63,16 +63,16 @@
     libinput.enable = true;
     wacom.enable = true;
     displayManager = {
-      gdm.enable = true;
-      # sddm.enable = true;
+      # gdm.enable = true;
+      sddm.enable = true;
     };
 
     desktopManager = {
       xterm.enable = false;
       # xfce.enable = true;
       # mate.enable = true;
-      gnome3.enable = true;
-      # plasma5.enable = true;
+      # gnome3.enable = true;
+      plasma5.enable = true;
     };
   };  
 
