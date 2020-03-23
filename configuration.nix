@@ -86,5 +86,5 @@
 
   system.stateVersion = "19.09";
 
-  system.autoUpgrade.enable = true;
+  system.autoUpgrade.enable = false;
 }
