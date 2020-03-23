@@ -10,6 +10,8 @@
       ./users.nix
     ];
 
+  nixpkgs.config.allowUnfree = true;
+
   hardware.bluetooth.enable = true;
   hardware.opengl.driSupport32Bit = true;
   hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
@@ -49,10 +51,18 @@
     nix
   ];
 
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [ gutenprint gutenprintBin hplip hplipWithPlugin splix cups-googlecloudprint ];
+  };
+
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+  };
+
   services.throttled.enable = true;
   services.fwupd.enable = true;
-
-  services.printing.enable = true;
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
