@@ -3,8 +3,15 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
+let 
+  home-manager-repo = builtins.fetchGit {
+    url = "https://github.com/rycee/home-manager.git";
+    ref = "release-19.09";
+  };
 
+in
 {
+  nixpkgs.overlays = [ (import "${home-manager-repo}/overlay.nix") ];
   imports =
     [ ./hardware-configuration.nix
       ./users.nix
@@ -43,6 +50,8 @@
   networking.networkmanager.enable = true;
   
   time.timeZone = "America/New_York";
+
+  
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
