@@ -3,12 +3,11 @@
     ./passwords.nix
   ];
   
-  users.users = [ 
-    {
-      name = "rosario";
+  users.users = { 
+    rosario = {
       description = "Rosario Pulella";
       isNormalUser = true;
       extraGroups = [ "wheel" ];
-    }
-  ];
+    };
+  };
 }
