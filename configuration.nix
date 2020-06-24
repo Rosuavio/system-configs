@@ -6,7 +6,7 @@
 let 
   home-manager-repo = builtins.fetchGit {
     url = "https://github.com/rycee/home-manager.git";
-    ref = "release-19.09";
+    ref = "release-20.03";
   };
 
 in
@@ -103,7 +103,7 @@ in
   #    cue = true;
   # };
 
-  system.stateVersion = "19.09";
+  system.stateVersion = "20.03";
 
   system.autoUpgrade.enable = false;
 }
