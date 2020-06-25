@@ -93,7 +93,7 @@ in
       # gnome3.enable = true;
       plasma5.enable = true;
     };
-  };  
+  };
 
   users.mutableUsers = false;
 
