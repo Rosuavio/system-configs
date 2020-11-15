@@ -3,15 +3,11 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-let 
-  home-manager-repo = builtins.fetchGit {
-    url = "https://github.com/rycee/home-manager.git";
-    ref = "release-20.03";
-  };
+let
+  hostName = "pulsar";
 
 in
 {
-  nixpkgs.overlays = [ (import "${home-manager-repo}/overlay.nix") ];
   imports =
     [ ./hardware-configuration.nix
       ./users.nix
@@ -24,11 +20,8 @@ in
   hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
   hardware.pulseaudio.support32Bit = true;
 
-  # Allows hardware u3f devices to be used in apps, like the yubikey in ff via chalange response.
-  hardware.u2f.enable = true;
-
   # TODO 2020.01.24 (RP) - Find a way to change the esp to "/esp"
-  boot.loader = {  
+  boot.loader = {
     # Use the systemd-boot EFI boot loader.
     systemd-boot = {
       enable = true;
@@ -46,19 +39,18 @@ in
   # Causing issues rn
   # boot.plymouth.enable = true;
 
-  networking.hostName = "pulsar";
+  networking.hostName = hostName;
   networking.networkmanager.enable = true;
-  
-  time.timeZone = "America/New_York";
 
-  
+  time.timeZone = "America/New_York";
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    home-manager
-    nix
   ];
+
+  services.openssh.enable = true;
+  services.pcscd.enable = true;
 
   services.printing = {
     enable = true;
@@ -70,28 +62,27 @@ in
     nssmdns = true;
   };
 
-  services.throttled.enable = true;
   services.fwupd.enable = true;
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  services.xserver = { 
+  services.xserver = {
     enable = true;
 
     libinput.enable = true;
     wacom.enable = true;
     displayManager = {
-      # gdm.enable = true;
-      sddm.enable = true;
+      gdm.enable = true;
+      # sddm.enable = true;
     };
 
     desktopManager = {
       xterm.enable = false;
       # xfce.enable = true;
       # mate.enable = true;
-      # gnome3.enable = true;
-      plasma5.enable = true;
+      gnome3.enable = true;
+      # plasma5.enable = true;
     };
   };
 
@@ -103,7 +94,7 @@ in
   #    cue = true;
   # };
 
-  system.stateVersion = "20.03";
+  system.stateVersion = "20.09";
 
   system.autoUpgrade.enable = false;
 }
