@@ -6,19 +6,29 @@
 let
   hostName = "pulsar";
 
+  nixos-hardware = builtins.fetchGit "https://github.com/NixOS/nixos-hardware.git";
 in
 {
   imports =
     [ ./hardware-configuration.nix
       ./users.nix
+      ./services.nix
+      "${nixos-hardware}/common/cpu/intel/kaby-lake"
+      "${nixos-hardware}/common/pc/laptop/ssd"
+      "${nixos-hardware}/lenovo/thinkpad/t480s"
     ];
 
   nixpkgs.config.allowUnfree = true;
 
+  hardware.enableRedistributableFirmware = true;
+
+  hardware.opengl.enable = true;
   hardware.bluetooth.enable = true;
-  hardware.opengl.driSupport32Bit = true;
-  hardware.opengl.extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
-  hardware.pulseaudio.support32Bit = true;
+  hardware.pulseaudio.enable = true;
+
+  boot.kernelPackages = pkgs.linuxPackages_5_10;
+
+  boot.initrd.luks.devices.crypted.device = "/dev/disk/by-uuid/3947050f-9e13-4395-b65b-e265c983d75b";
 
   # TODO 2020.01.24 (RP) - Find a way to change the esp to "/esp"
   boot.loader = {
@@ -36,63 +46,29 @@ in
     timeout = null;
   };
 
-  # Causing issues rn
-  # boot.plymouth.enable = true;
-
   networking.hostName = hostName;
   networking.networkmanager.enable = true;
 
   time.timeZone = "America/New_York";
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  programs = {
+    sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+
+      extraPackages = with pkgs; [
+        swaylock
+        swayidle
+        wl-clipboard
+        mako
+        alacritty
+        dmenu
+      ];
+    };
+  };
+
   environment.systemPackages = with pkgs; [
   ];
-
-  services.openssh.enable = true;
-  services.pcscd.enable = true;
-
-  services.printing = {
-    enable = true;
-    drivers = with pkgs; [ gutenprint gutenprintBin hplip hplipWithPlugin splix cups-googlecloudprint ];
-  };
-
-  services.avahi = {
-    enable = true;
-    nssmdns = true;
-  };
-
-  services.fwupd.enable = true;
-
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-
-  services.xserver = {
-    enable = true;
-
-    libinput.enable = true;
-    wacom.enable = true;
-    displayManager = {
-      gdm.enable = true;
-      # sddm.enable = true;
-    };
-
-    desktopManager = {
-      xterm.enable = false;
-      # xfce.enable = true;
-      # mate.enable = true;
-      gnome3.enable = true;
-      # plasma5.enable = true;
-    };
-  };
-
-  users.mutableUsers = false;
-
-  # security.pam.u2f = {
-  #    enable = true;
-  #    control = "optional";
-  #    cue = true;
-  # };
 
   system.stateVersion = "20.09";
 
