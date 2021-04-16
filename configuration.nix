@@ -13,9 +13,7 @@ in
     [ ./hardware-configuration.nix
       ./users.nix
       ./services.nix
-      "${nixos-hardware}/common/cpu/intel/kaby-lake"
-      "${nixos-hardware}/common/pc/laptop/ssd"
-      "${nixos-hardware}/lenovo/thinkpad/t480s"
+      ./sway.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -26,7 +24,7 @@ in
   hardware.bluetooth.enable = true;
   hardware.pulseaudio.enable = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_5_10;
+  services.hardware.bolt.enable = true;
 
   boot.initrd.luks.devices.crypted.device = "/dev/disk/by-uuid/3947050f-9e13-4395-b65b-e265c983d75b";
 
@@ -50,22 +48,6 @@ in
   networking.networkmanager.enable = true;
 
   time.timeZone = "America/New_York";
-
-  programs = {
-    sway = {
-      enable = true;
-      wrapperFeatures.gtk = true;
-
-      extraPackages = with pkgs; [
-        swaylock
-        swayidle
-        wl-clipboard
-        mako
-        alacritty
-        dmenu
-      ];
-    };
-  };
 
   environment.systemPackages = with pkgs; [
   ];
