@@ -1,2 +1,2 @@
-passwords.nix
+secrets/**
 hardware-configuration*.nix

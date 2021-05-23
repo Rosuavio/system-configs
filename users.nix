@@ -1,6 +1,7 @@
 {
   imports = [
-    ./passwords.nix
+    ./secrets/passwords.nix
+    ./secrets/users.nix
   ];
 
   users = {
