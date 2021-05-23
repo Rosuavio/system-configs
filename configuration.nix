@@ -12,8 +12,6 @@ in
   imports =
     [ ./hardware-configuration.nix
       ./users.nix
-      ./services.nix
-      ./sway.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -24,9 +22,22 @@ in
   hardware.bluetooth.enable = true;
   hardware.pulseaudio.enable = true;
 
-  services.hardware.bolt.enable = true;
+  services = {
+    hardware.bolt.enable = true;
+    pcscd.enable = true;
+    pipewire.enable = true;
+    throttled.enable = false;
+    openssh.enable = true;
 
-  boot.initrd.luks.devices.crypted.device = "/dev/disk/by-uuid/3947050f-9e13-4395-b65b-e265c983d75b";
+    fwupd.enable = true;
+  };
+
+  boot.initrd.supportedFilesystems = [ "zfs" ];
+  boot.supportedFilesystems = [ "zfs" ];
+
+  boot.zfs.forceImportAll = false;
+
+  boot.kernelParams = [ "elevator=none" ];
 
   # TODO 2020.01.24 (RP) - Find a way to change the esp to "/esp"
   boot.loader = {
@@ -45,12 +56,39 @@ in
   };
 
   networking.hostName = hostName;
+  networking.hostId = "f696fe6c";
+
   networking.networkmanager.enable = true;
 
   time.timeZone = "America/New_York";
 
+  environment.etc."NetworkManager/system-connections" = {
+    source = "/persist/etc/NetworkManager/system-connections/";
+  };
+
   environment.systemPackages = with pkgs; [
   ];
+
+  services.xserver = {
+    enable = true;
+    desktopManager.plasma5.enable = true;
+    displayManager.sddm.enable = true;
+  };
+
+  programs.sway = {
+    enable = false;
+    wrapperFeatures.gtk = true;
+    extraPackages = with pkgs; [
+       swaylock
+       swayidle
+       xwayland
+       wl-clipboard
+       mako
+       alacritty
+       rxvt-unicode
+       dmenu
+    ];
+  };
 
   system.stateVersion = "20.09";
 
