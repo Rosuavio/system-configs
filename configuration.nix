@@ -11,7 +11,7 @@ in
 {
   imports =
     [ ./hardware-configuration.nix
-      ./users.nix
+      ./users
     ];
 
   nixpkgs.config.allowUnfree = true;
