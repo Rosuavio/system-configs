@@ -68,27 +68,6 @@ in
     nix
   ];
 
-  services.xserver = {
-    enable = true;
-    desktopManager.plasma5.enable = true;
-    displayManager.sddm.enable = true;
-  };
-
-  programs.sway = {
-    enable = false;
-    wrapperFeatures.gtk = true;
-    extraPackages = with pkgs; [
-       swaylock
-       swayidle
-       xwayland
-       wl-clipboard
-       mako
-       alacritty
-       rxvt-unicode
-       dmenu
-    ];
-  };
-
   system.stateVersion = "20.09";
 
   system.autoUpgrade.enable = false;
