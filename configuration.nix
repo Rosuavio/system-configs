@@ -35,8 +35,6 @@ in
   boot.initrd.supportedFilesystems = [ "zfs" ];
   boot.supportedFilesystems = [ "zfs" ];
 
-  boot.zfs.forceImportAll = false;
-
   boot.kernelParams = [ "elevator=none" ];
 
   # TODO 2020.01.24 (RP) - Find a way to change the esp to "/esp"
