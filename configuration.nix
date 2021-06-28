@@ -65,6 +65,7 @@ in
   };
 
   environment.systemPackages = with pkgs; [
+    nix
   ];
 
   services.xserver = {
