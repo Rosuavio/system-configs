@@ -12,6 +12,7 @@ in
   imports =
     [ ./hardware-configuration.nix
       ./users
+      "${nixos-hardware}/lenovo/thinkpad/t480"
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -26,7 +27,6 @@ in
     hardware.bolt.enable = true;
     pcscd.enable = true;
     pipewire.enable = true;
-    throttled.enable = false;
     openssh.enable = true;
 
     fwupd.enable = true;
