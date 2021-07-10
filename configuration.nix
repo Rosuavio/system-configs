@@ -42,6 +42,11 @@ in
     fwupd.enable = true;
   };
 
+  services.postgresql = {
+    enable = true;
+    package = pkgs.postgresql_13;
+  };
+
   boot.initrd.supportedFilesystems = [ "zfs" ];
   boot.supportedFilesystems = [ "zfs" ];
 
