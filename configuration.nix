@@ -23,6 +23,16 @@ in
   hardware.bluetooth.enable = true;
   hardware.pulseaudio.enable = true;
 
+  security.pam.services.swaylock = {};
+
+  xdg.portal = {
+    enable = true;
+    gtkUsePortal = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+  };
+
+  fonts.enableDefaultFonts = true;
+
   services = {
     hardware.bolt.enable = true;
     pcscd.enable = true;
@@ -67,6 +77,8 @@ in
   environment.systemPackages = with pkgs; [
     nix
   ];
+
+  programs.dconf.enable = true;
 
   system.stateVersion = "21.05";
 
