@@ -13,6 +13,8 @@ in
     [ ./hardware-configuration.nix
       ./users
       "${nixos-hardware}/lenovo/thinkpad/t480"
+      "${nixos-hardware}/common/cpu/intel/kaby-lake"
+      "${nixos-hardware}/common/pc/laptop/ssd"
     ];
 
   nixpkgs.config.allowUnfree = true;
