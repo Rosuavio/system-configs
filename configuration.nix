@@ -23,7 +23,6 @@ in
 
   hardware.opengl.enable = true;
   hardware.bluetooth.enable = true;
-  hardware.pulseaudio.enable = true;
 
   security.pam.services.swaylock = {};
 
@@ -38,7 +37,11 @@ in
   services = {
     hardware.bolt.enable = true;
     pcscd.enable = true;
-    pipewire.enable = true;
+    pipewire = {
+      enable = true;
+      pulse.enable = true;
+      alsa.enable = true;
+    };
     openssh.enable = true;
 
     fwupd.enable = true;
