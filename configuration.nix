@@ -37,6 +37,7 @@ in
   services = {
     hardware.bolt.enable = true;
     pcscd.enable = true;
+    flatpak.enable = true;
     pipewire = {
       enable = true;
       pulse.enable = true;
