@@ -62,6 +62,8 @@ in
     };
   };
 
+  services.dbus.packages = [ pkgs.gnome.dconf ];
+
   boot.initrd.supportedFilesystems = [ "zfs" ];
   boot.supportedFilesystems = [ "zfs" ];
 
