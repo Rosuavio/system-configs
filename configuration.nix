@@ -67,7 +67,7 @@ in
   boot.initrd.supportedFilesystems = [ "zfs" ];
   boot.supportedFilesystems = [ "zfs" ];
 
-  boot.kernelParams = [ "elevator=none" ];
+  boot.kernelParams = [ ];
 
   # TODO 2020.01.24 (RP) - Find a way to change the esp to "/esp"
   boot.loader = {
