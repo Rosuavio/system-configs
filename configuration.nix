@@ -48,11 +48,6 @@ in
     fwupd.enable = true;
   };
 
-  services.postgresql = {
-    enable = true;
-    package = pkgs.postgresql_13;
-  };
-
   services.greetd = {
     enable = true;
     settings = {
