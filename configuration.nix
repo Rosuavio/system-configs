@@ -97,21 +97,8 @@ in
 
   programs.dconf.enable = true;
 
-  i18n.extraLocaleSettings =
-  let l = "en_US.UTF-8";
-  in {
-    LC_CTYPE = l;
-    LC_NUMERIC = l;
-    LC_TIME = l;
-    LC_COLLATE = l;
-    LC_MONETARY = l;
-    LC_MESSAGES = l;
-    LC_PAPER = l;
-    LC_NAME = l;
-    LC_ADDRESS = l;
-    LC_TELEPHONE = l;
-    LC_MEASUREMENT = l;
-    LC_IDENTIFICATION = l;
+  i18n.extraLocaleSettings = {
+    LC_CTYPE = "en_US.UTF-8";
   };
 
   nix.trustedUsers = [ "root" "rosario" ];
