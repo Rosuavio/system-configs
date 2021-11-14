@@ -85,12 +85,6 @@ in
 
   networking.networkmanager.enable = true;
 
-  networking.dhcpcd.enable = false;
-  networking.useNetworkd = true;
-  networking.useDHCP = false;
-
-  systemd.services."systemd-useNetworkd-wait-online".enable = false;
-
   time.timeZone = "America/New_York";
 
   environment.etc."NetworkManager/system-connections" = {
