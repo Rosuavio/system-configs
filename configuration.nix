@@ -12,32 +12,52 @@ in
   imports =
     [ ./hardware-configuration.nix
       ./users
-      "${nixos-hardware}/lenovo/thinkpad/t480"
-      "${nixos-hardware}/common/cpu/intel/kaby-lake"
-      "${nixos-hardware}/common/pc/laptop/ssd"
+      ./obsidian
+      "${nixos-hardware}/common/cpu/amd"
+      "${nixos-hardware}/common/pc/ssd"
+      "${nixos-hardware}/common/pc"
     ];
+
+  boot.initrd.luks.devices.root = {
+    device = "/dev/disk/by-uuid/e9966ab2-a663-4c04-87d9-1558aa92601d";
+    allowDiscards = true;
+  };
+
+#  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   nixpkgs.config.allowUnfree = true;
 
   hardware.enableRedistributableFirmware = true;
 
-  hardware.opengl.enable = true;
-  hardware.bluetooth.enable = true;
+# Does not work so well with sway rn.
+# Also does not work so well with the KH sims
+#  services.xserver.videoDrivers = [ "nvidia" ];
+#  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
 
+  hardware.video.hidpi.enable = true;
+  hardware.nvidia.modesetting.enable = true;
+  hardware.nvidia.powerManagement.enable = true;
+
+  hardware.opengl.enable = true;
+
+  hardware.bluetooth.enable = true;
+  hardware.pulseaudio.enable = false;
+
+  security.polkit.enable = true;
   security.pam.services.swaylock = {};
+
+  environment.pathsToLink = [ "/share/backgrounds/sway" ];
 
   xdg.portal = {
     enable = true;
-    gtkUsePortal = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+    # gtkUsePortal = true;
+    wlr.enable = true;
   };
 
   fonts.enableDefaultFonts = true;
 
   services = {
-    hardware.bolt.enable = true;
     pcscd.enable = true;
-    flatpak.enable = true;
     pipewire = {
       enable = true;
       pulse.enable = true;
@@ -49,7 +69,7 @@ in
   };
 
   services.greetd = {
-    enable = true;
+    enable = false;
     settings = {
       default_session = {
         command = "${pkgs.cage}/bin/cage -s -- ${pkgs.greetd.gtkgreet}/bin/gtkgreet";
@@ -57,21 +77,19 @@ in
     };
   };
 
+  programs.dconf.enable = true;
+
   services.dbus.packages = [ pkgs.gnome.dconf ];
 
   boot.initrd.supportedFilesystems = [ "zfs" ];
   boot.supportedFilesystems = [ "zfs" ];
 
-  boot.kernelParams = [ "synaptics_intertouch=1" ];
-
   # TODO 2020.01.24 (RP) - Find a way to change the esp to "/esp"
   boot.loader = {
-    # Use the systemd-boot EFI boot loader.
     systemd-boot = {
       enable = true;
       editor = false;
     };
-
     efi = {
       # efiSysMountPoint = "/boot/efi";
       canTouchEfiVariables = true;
@@ -95,18 +113,16 @@ in
     nix
   ];
 
-  programs.dconf.enable = true;
-
   i18n.extraLocaleSettings = {
     LC_CTYPE = "en_US.UTF-8";
   };
 
-  nix.trustedUsers = [ "root" "rosario" ];
+  nix.trustedUsers = [ "root" ];
 
   nix.binaryCaches = [ "https://nixcache.reflex-frp.org" ];
   nix.binaryCachePublicKeys = [ "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=" ];
 
-  system.stateVersion = "21.05";
+  system.stateVersion = "21.11";
 
   system.autoUpgrade.enable = false;
 }

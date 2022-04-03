@@ -1,10 +1,9 @@
 {
   imports = [
     secrets/passwords.nix
-    secrets/users.nix
   ];
 
-  users.mutableUsers = true;
+  users.mutableUsers = false;
 
   users.users = {
     rosario = {
