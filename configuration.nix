@@ -4,7 +4,7 @@
 
 { config, pkgs, ... }:
 let
-  hostName = "pulsar";
+  hostName = "polaris";
 
   nixos-hardware = builtins.fetchGit "https://github.com/NixOS/nixos-hardware.git";
 in
@@ -14,34 +14,37 @@ in
       ./users
       ./obsidian
       "${nixos-hardware}/common/cpu/amd"
+      "${nixos-hardware}/common/gpu/amd"
       "${nixos-hardware}/common/pc/ssd"
       "${nixos-hardware}/common/pc"
     ];
+
+  boot.kernelModules = [ "btqca" "btusb" "hci_qca" "hci_uart" "sg" "btintel" ];
 
   boot.initrd.luks.devices.root = {
     device = "/dev/disk/by-uuid/e9966ab2-a663-4c04-87d9-1558aa92601d";
     allowDiscards = true;
   };
 
-#  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   nixpkgs.config.allowUnfree = true;
 
+  hardware.enableAllFirmware = true;
   hardware.enableRedistributableFirmware = true;
 
-# Does not work so well with sway rn.
-# Also does not work so well with the KH sims
-#  services.xserver.videoDrivers = [ "nvidia" ];
-#  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.beta;
-
   hardware.video.hidpi.enable = true;
-  hardware.nvidia.modesetting.enable = true;
-  hardware.nvidia.powerManagement.enable = true;
 
   hardware.opengl.enable = true;
+  hardware.ledger.enable = true;
 
   hardware.bluetooth.enable = true;
   hardware.pulseaudio.enable = false;
+
+  hardware.openrazer = {
+    enable = true;
+    users = [ "rosario" ];
+  };
 
   security.polkit.enable = true;
   security.pam.services.swaylock = {};
@@ -66,6 +69,8 @@ in
     openssh.enable = true;
 
     fwupd.enable = true;
+
+    zfs.autoScrub.enable = true;
   };
 
   services.greetd = {
@@ -99,7 +104,7 @@ in
   };
 
   networking.hostName = hostName;
-  networking.hostId = "f696fe6c";
+  networking.hostId = "6a82d7b3";
 
   networking.networkmanager.enable = true;
 
@@ -118,9 +123,6 @@ in
   };
 
   nix.trustedUsers = [ "root" ];
-
-  nix.binaryCaches = [ "https://nixcache.reflex-frp.org" ];
-  nix.binaryCachePublicKeys = [ "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=" ];
 
   system.stateVersion = "21.11";
 
