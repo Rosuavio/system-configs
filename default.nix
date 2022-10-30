@@ -73,6 +73,7 @@ in
     };
 
     fwupd.enable = true;
+    printing.enable = true;
   };
 
   services.greetd = {
