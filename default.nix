@@ -21,6 +21,8 @@ in
   nixpkgs.config.allowUnfree = true;
 
   hardware = {
+    enableAllFirmware = true;
+    enableRedistributableFireware = true;
     opengl = {
       enable = true;
       driSupport = true;
