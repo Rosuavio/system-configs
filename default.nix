@@ -20,6 +20,17 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
+  boot = {
+    supportedFilesystems = [ "zfs" ];
+    initrd.supportedFilesystems = [ "zfs" ];
+
+    # I am using zfs and the linux kenrel and zfs cant figure out how to hybernate together
+    # REMOVE: When https://github.com/NixOS/nixpkgs/pull/171680 is merged
+    # If this is removed and nixos is trackering this issue, then if zfs and linux figure things out
+    # When nixpkgs updates I will automaticly get my ability to hybernate again.
+    kernelParams = [ "nohibernate" ];
+  };
+
   hardware = {
     enableAllFirmware = true;
     enableRedistributableFirmware = true;
@@ -49,6 +60,7 @@ in
   fonts.enableDefaultFonts = true;
 
   services = {
+    zfs.autoScrub.enable = true;
     pcscd.enable = true;
     pipewire = {
       enable = true;
@@ -105,6 +117,10 @@ in
   i18n.extraLocaleSettings = {
     LC_CTYPE = "en_US.UTF-8";
   };
+
+  time.timeZone = "America/New_York";
+
+  nix.trustedUsers = [ "root" ];
 
   system.stateVersion = "22.05";
 
