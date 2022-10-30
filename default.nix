@@ -1,18 +1,4 @@
 { config, pkgs, lib, ... }:
-let
-
-  suspend-fix = pkgs.writeShellScriptBin "suspend-fix" ''
-      #!/usr/bin/env bash
-      isenabled=`cat /proc/acpi/wakeup | grep $1 | grep -o enabled`
-      if [ $isenabled == "enabled" ]; then
-        echo $1 > /proc/acpi/wakeup
-      else
-        exit
-      fi
-    '';
-
-  nixos-hardware = builtins.fetchGit "https://github.com/NixOS/nixos-hardware.git";
-in
 {
   imports =
     [ ./users
