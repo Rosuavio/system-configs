@@ -22,7 +22,7 @@ in
 
   hardware = {
     enableAllFirmware = true;
-    enableRedistributableFireware = true;
+    enableRedistributableFirmware = true;
     opengl = {
       enable = true;
       driSupport = true;
