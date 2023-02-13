@@ -124,7 +124,7 @@ in
 
   nix.trustedUsers = [ "root" ];
 
-  system.stateVersion = "21.11";
+  system.stateVersion = "22.11";
 
   system.autoUpgrade.enable = false;
 }
