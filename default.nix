@@ -62,15 +62,6 @@
     printing.enable = true;
   };
 
-  services.greetd = {
-    enable = false;
-    settings = {
-      default_session = {
-        command = "${pkgs.cage}/bin/cage -s -- ${pkgs.greetd.gtkgreet}/bin/gtkgreet";
-      };
-    };
-  };
-
   programs = {
     dconf.enable = true;
   };
