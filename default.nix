@@ -103,6 +103,26 @@
     trusted-public-keys = [ "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=" ];
   };
 
+  services.greetd = {
+    enable = true;
+    settings.default_session.command = let
+      login_sway_config = pkgs.writeText "greetd-sway-config" ''
+        exec "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP"
+
+        bindsym Mod4+shift+e exec swaynag \
+          -t warning \
+          -m 'What do you want to do?' \
+          -b 'Poweroff' 'systemctl poweroff' \
+          -b 'Reboot' 'systemctl reboot'
+
+        # #wlgreet is currently borken on 22.11, its version does not find wayland libs
+        # would like to use it when posible
+        # https://github.com/NixOS/nixpkgs/pull/210464#issuecomment-1437583852
+        exec "${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; swaymsg exit"
+      '';
+    in "${pkgs.sway}/bin/sway --config ${login_sway_config}";
+  };
+
   system.stateVersion = "22.11";
 
   system.autoUpgrade.enable = false;
