@@ -19,11 +19,8 @@
       driSupport = true;
     };
 
-    ledger.enable = true;
-
     bluetooth.enable = true;
     pulseaudio.enable = false;
-
   };
 
   security.polkit.enable = true;
