@@ -1,8 +1,9 @@
 # What is This?
 
-The NixOS configuration files for my laptop.
+My common nixos configurations.
 
 # Usage
 
-- Clone into user dir and use git normally.
-- Use `nixos-rebuild -I nixos-config=configuration.nix ...` to use this config instead of default `/etc/nixos/configuration.nix`
+Add a path to this repo to your imports
+
+> NOTE: You can use this repo as a derivation using niv, nix-thunk and the like.
