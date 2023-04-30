@@ -11,7 +11,7 @@ in nixos-lib.runTest {
 
       nodes.machine = { config, ... }: {
         imports = [
-          ../module.nix
+          ../module
           ../default-config.nix
         ];
 

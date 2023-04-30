@@ -2,7 +2,7 @@
 {
   imports = [
     (modulesPath + "/virtualisation/qemu-vm.nix")
-    ./module.nix
+    ./module
     ./default-config.nix
   ];
 

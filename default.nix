@@ -1,6 +1,6 @@
 {pkgs, ... }:
 {
-  module = import ./module.nix;
+  module = import ./module;
   mkRebuildScript = nixpkgs-path: nixos-config-path:
     pkgs.writeShellScriptBin "nixos-rebuild" ''
         exec ${pkgs.nixos-rebuild}/bin/nixos-rebuild \
