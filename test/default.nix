@@ -1,15 +1,16 @@
 let
   sources = import ../nix/sources.nix;
-  nixpkgs = sources.nixpkgs;
-  pkgs = import nixpkgs {};
+  inherit (sources) nixpkgs;
+  pkgs = import nixpkgs { };
   nixos-lib = import (nixpkgs + "/nixos/lib") { };
 
-in nixos-lib.runTest {
+in
+nixos-lib.runTest {
   imports = [
     {
       name = "graphical-login";
 
-      nodes.machine = { config, ... }: {
+      nodes.machine = { ... }: {
         imports = [
           ../module
           ../default-config.nix
@@ -33,7 +34,7 @@ in nixos-lib.runTest {
         ocrOptimiztions = true;
       };
 
-      interactive.nodes.machine = { ... }: {
+      interactive.nodes.machine = {
         # Need to switch to a different GPU driver than the default one (-vga std) so that Cage can launch:
         virtualisation.qemu.options = [
           "-vga none"

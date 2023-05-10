@@ -1,2 +1,4 @@
 result
+result-*
 nixos.qcow2
+/.pre-commit-config.yaml

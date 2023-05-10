@@ -1,11 +1,12 @@
 let
   sources = import ./nix/sources.nix;
-  nixpkgs = sources.nixpkgs;
-  pkgs = import nixpkgs {};
+  inherit (sources) nixpkgs;
+  pkgs = import nixpkgs { };
 
   default = import ./default.nix { inherit pkgs; };
 
-in pkgs.mkShell {
+in
+pkgs.mkShell {
   name = "os-dev";
 
   packages = [
@@ -15,6 +16,7 @@ in pkgs.mkShell {
 
   shellHook = ''
     echo 'Welcome to the system development shell!'
+    ${default.pre-commit-check.shellHook}
   '';
 
 }
