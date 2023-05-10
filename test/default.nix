@@ -10,7 +10,7 @@ nixos-lib.runTest {
     {
       name = "graphical-login";
 
-      nodes.machine = { ... }: {
+      nodes.machine = {
         imports = [
           ../module
           ../default-config.nix
