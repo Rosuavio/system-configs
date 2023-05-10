@@ -15,8 +15,8 @@ pkgs.mkShell {
   ];
 
   shellHook = ''
-    echo 'Welcome to the system development shell!'
     ${default.pre-commit-check.shellHook}
+    echo 'Welcome to the system development shell!'
   '';
 
 }
