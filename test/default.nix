@@ -1,9 +1,7 @@
 let
-  sources = import ../nix/sources.nix;
-  inherit (sources) nixpkgs;
+  inherit (import ../nix/sources.nix) nixpkgs;
   pkgs = import nixpkgs { };
   nixos-lib = import (nixpkgs + "/nixos/lib") { };
-
 in
 nixos-lib.runTest {
   imports = [
@@ -13,7 +11,7 @@ nixos-lib.runTest {
       nodes.machine = {
         imports = [
           ../module
-          ../default-config.nix
+          ../examples/minimal.nix
         ];
 
         # Seems to be good for Ryzen 5 3600
