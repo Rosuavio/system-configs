@@ -3,11 +3,6 @@ let
   cfg = config;
 in
 {
-  imports =
-    [
-      ./users
-    ];
-
   options = {
     ocrOptimiztions = lib.mkEnableOption "ocrOptimiztions";
   };
@@ -101,6 +96,16 @@ in
     nix.settings = {
       substituters = [ "https://nixcache.reflex-frp.org" ];
       trusted-public-keys = [ "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=" ];
+    };
+
+    users.mutableUsers = false;
+
+    users.users = {
+      rosario = {
+        description = "Rosario Pulella";
+        isNormalUser = true;
+        extraGroups = [ "wheel" "networkmanager" "video" "adbusers" ];
+      };
     };
 
     services.greetd = {
