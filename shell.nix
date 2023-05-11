@@ -1,10 +1,8 @@
 let
   sources = import ./nix/sources.nix;
-  inherit (sources) nixpkgs;
-  pkgs = import nixpkgs { };
+  pkgs = import sources.nixpkgs { };
 
-  default = import ./default.nix { inherit pkgs; };
-
+  default = import ./default.nix { };
 in
 pkgs.mkShell {
   name = "os-dev";
