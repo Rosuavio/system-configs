@@ -4,7 +4,4 @@
     root.password = "test";
     rosario.password = "test";
   };
-
-  # TODO: Migrate this into the system config.
-  system.stateVersion = "22.11";
 }
