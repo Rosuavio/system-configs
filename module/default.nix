@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, options, pkgs, lib, ... }:
 let
   cfg = config;
 in
@@ -93,19 +93,26 @@ in
 
     time.timeZone = "America/New_York";
 
-    # Note: It seems like some of these subsituters might be better configured by the users.
-    # Currenrly that requires that they are "trusted" users, this is less than optimal
-    # but maybe preferable for the rosario accout (and maybe root?).
-    # TODO: Invesitage
-    nix.settings = {
-      substituters = [
-        "https://nixcache.reflex-frp.org"
-        "https://rosuavio-personal.cachix.org"
-      ];
-      trusted-public-keys = [
-        "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
-        "rosuavio-personal.cachix.org-1:JE9iWA0eTZbknfGo2CtxMyxpbU7OjDFN4eCqKI7EmdI="
-      ];
+    nix = {
+      # Remove defualt vaule for `nixos-config` from nixPath as I don't use it.
+      nixPath = lib.filter
+        (path: !lib.hasPrefix "nixos-config=" path)
+        options.nix.nixPath.default;
+
+      settings = {
+        # Note: It seems like some of these subsituters might be better configured by the users.
+        # Currenrly that requires that they are "trusted" users, this is less than optimal
+        # but maybe preferable for the rosario accout (and maybe root?).
+        # TODO: Invesitage
+        substituters = [
+          "https://nixcache.reflex-frp.org"
+          "https://rosuavio-personal.cachix.org"
+        ];
+        trusted-public-keys = [
+          "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
+          "rosuavio-personal.cachix.org-1:JE9iWA0eTZbknfGo2CtxMyxpbU7OjDFN4eCqKI7EmdI="
+        ];
+      };
     };
 
     users.mutableUsers = false;
