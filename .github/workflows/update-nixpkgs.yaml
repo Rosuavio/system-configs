@@ -40,6 +40,8 @@ jobs:
     # Solutions:
     # https://github.com/peter-evans/create-pull-request/blob/main/docs/concepts-guidelines.md#triggering-further-workflow-runs
     - name: create pull request
-      run: gh pr create -B main -H $BRANCH_NAME --title "Update nixpkgs" --body "Update nixpkgs"
+      run: |
+        PR=$(gh pr create -B main -H $BRANCH_NAME --title "Update nixpkgs" --body "Update nixpkgs")
+        gh pr merge $PR -d --rebase
       env:
         GH_TOKEN: ${{ steps.generate-token.outputs.token }}
