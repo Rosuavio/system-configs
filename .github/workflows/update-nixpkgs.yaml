@@ -42,6 +42,6 @@ jobs:
     - name: create pull request
       run: |
         PR=$(gh pr create -B main -H $BRANCH_NAME --title "Update nixpkgs" --body "Update nixpkgs")
-        gh pr merge $PR -d --rebase
+        gh pr merge $PR -d --rebase --auto
       env:
         GH_TOKEN: ${{ steps.generate-token.outputs.token }}
