@@ -19,9 +19,13 @@ jobs:
       with:
         name: rosuavio-personal
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: git checkout -b $BRANCH_NAME
     - run: nix-shell --run "niv update nixpkgs"
-    - run: git commit -am "Update nixpkgs"
-    - run: git push -u origin $BRANCH_NAME
+    - run: |
+       git --version
+       git config user.name "GitHub Actions Bot"
+       git config user.email "<>"
+       git checkout -b $BRANCH_NAME
+       git commit -am "Update nixpkgs"
+       git push -u origin $BRANCH_NAME
     - name: create pull request
       run: gh pr create -B main -H $BRANCH_NAME --title "Update nixpkgs" --body "Update nixpkgs"
