@@ -27,7 +27,19 @@ jobs:
        git checkout -b $BRANCH_NAME
        git commit -am "Update nixpkgs"
        git push -u origin $BRANCH_NAME
+    # Fallowing https://github.com/peter-evans/create-pull-request/blob/main/docs/concepts-guidelines.md#authenticating-with-github-app-generated-tokens
+    # I would like to not depend on anything here
+    # TODO: Figure this out myself
+    - uses: tibdex/github-app-token@v1
+      id: generate-token
+      with:
+        app_id: ${{ secrets.APP_ID }}
+        private_key: ${{ secrets.APP_PRIVATE_KEY }}
+
+    # If `github.token` is used then the PR wont trigger any other github actions
+    # Solutions:
+    # https://github.com/peter-evans/create-pull-request/blob/main/docs/concepts-guidelines.md#triggering-further-workflow-runs
     - name: create pull request
       run: gh pr create -B main -H $BRANCH_NAME --title "Update nixpkgs" --body "Update nixpkgs"
       env:
-        GH_TOKEN: ${{ github.token }}
+        GH_TOKEN: ${{ steps.generate-token.outputs.token }}
