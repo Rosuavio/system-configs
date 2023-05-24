@@ -8,6 +8,7 @@ let
   nix-pre-commit-hooks = import sources."pre-commit-hooks.nix";
 in
 {
+  inherit nixpkgs;
   pre-commit-check = nix-pre-commit-hooks.run {
     # Might want to see about using oxalica/nil (an interesting nix language server) for linting.
     src = ./.;
