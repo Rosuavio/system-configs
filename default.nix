@@ -10,26 +10,6 @@ in
 {
   inherit nixpkgs;
 
-  pre-commit-check = (import sources."pre-commit-hooks.nix").run {
-    # Might want to see about using oxalica/nil (an interesting nix language server) for linting.
-    src = ./.;
-    hooks = {
-      statix.enable = true;
-      deadnix = {
-        enable = true;
-        excludes = [ "^nix\\/.*$" ];
-      };
-      nixpkgs-fmt = {
-        enable = true;
-        excludes = [ "^nix\\/.*$" ];
-      };
-    };
-
-    settings = {
-      statix.ignore = [ "nix/**" ];
-    };
-  };
-
   mkRebuildScript =
     { nixos-config
     , nixpkgs ? nixpkgs-path
@@ -64,4 +44,24 @@ in
       };
     };
   }) vm;
+
+  pre-commit-check = (import sources."pre-commit-hooks.nix").run {
+    # Might want to see about using oxalica/nil (an interesting nix language server) for linting.
+    src = ./.;
+    hooks = {
+      statix.enable = true;
+      deadnix = {
+        enable = true;
+        excludes = [ "^nix\\/.*$" ];
+      };
+      nixpkgs-fmt = {
+        enable = true;
+        excludes = [ "^nix\\/.*$" ];
+      };
+    };
+
+    settings = {
+      statix.ignore = [ "nix/**" ];
+    };
+  };
 }
