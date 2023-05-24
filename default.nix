@@ -5,12 +5,12 @@
 let
   nixpkgs-path = nixpkgs;
   nixos-path = nixpkgs-path + "/nixos";
-  nix-pre-commit-hooks = import sources."pre-commit-hooks.nix";
 
 in
 {
   inherit nixpkgs;
-  pre-commit-check = nix-pre-commit-hooks.run {
+
+  pre-commit-check = (import sources."pre-commit-hooks.nix").run {
     # Might want to see about using oxalica/nil (an interesting nix language server) for linting.
     src = ./.;
     hooks = {
