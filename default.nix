@@ -1,11 +1,12 @@
 { sources ? import ./nix/sources.nix
 , nixpkgs ? sources.nixpkgs
-, pkgs ? import nixpkgs { }
 , ...
 }:
 let
-  nixos-path = nixpkgs + "/nixos";
+  nixpkgs-path = nixpkgs;
+  nixos-path = nixpkgs-path + "/nixos";
   nix-pre-commit-hooks = import sources."pre-commit-hooks.nix";
+
 in
 {
   inherit nixpkgs;
@@ -29,13 +30,18 @@ in
     };
   };
 
-  mkRebuildScript = nixpkgs-path: nixos-config-path:
+  mkRebuildScript =
+    { nixos-config
+    , nixpkgs ? nixpkgs-path
+    , pkgs ? import nixpkgs { }
+    }:
     pkgs.writeShellScriptBin "nixos-rebuild" ''
       exec ${pkgs.nixos-rebuild}/bin/nixos-rebuild \
-        -I nixpkgs=${nixpkgs-path} \
-        -I nixos-config=${nixos-config-path} \
+        -I nixpkgs=${nixpkgs} \
+        -I nixos-config=${nixos-config} \
         "$@"
     '';
+
   inherit (import nixos-path {
     configuration = { modulesPath, ... }: {
       imports = [
