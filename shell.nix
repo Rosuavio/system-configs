@@ -1,6 +1,6 @@
 let
   sources = import ./nix/sources.nix;
-  pkgs = import sources.nixpkgs { };
+  pkgs = import sources."nixos-22.11" { };
 
   default = import ./default.nix { };
 in
