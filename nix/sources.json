@@ -1,5 +1,5 @@
 {
-    "nixpkgs": {
+    "nixos-22.11": {
         "branch": "nixos-22.11",
         "description": "Nix Packages collection",
         "homepage": "",

@@ -1,5 +1,5 @@
 let
-  inherit (import ../nix/sources.nix) nixpkgs;
+  nixpkgs = (import ../nix/sources.nix)."nixos-22.11";
   pkgs = import nixpkgs { };
   nixos-lib = import (nixpkgs + "/nixos/lib") { };
 in
