@@ -1,5 +1,5 @@
 { sources ? import ./nix/sources.nix
-, nixpkgs ? sources.nixpkgs
+, nixpkgs ? sources."nixos-22.11"
 , ...
 }:
 let
