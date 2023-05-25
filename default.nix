@@ -58,6 +58,7 @@ in
         enable = true;
         excludes = [ "^nix\\/.*$" ];
       };
+      markdownlint.enable = true;
     };
 
     settings = {
