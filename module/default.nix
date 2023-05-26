@@ -107,12 +107,14 @@ in
         # but maybe preferable for the rosario accout (and maybe root?).
         # TODO: Invesitage
         substituters = [
+          "https://cache.zw3rk.com"
           "https://cache.iog.io"
           "https://iohk.cachix.org"
           "https://nixcache.reflex-frp.org"
           "https://rosuavio-personal.cachix.org"
         ];
         trusted-public-keys = [
+          "loony-tools:pr9m4BkM/5/eSTZlkQyRt57Jz7OMBxNSUiMC4FkcNfk="
           "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
           "iohk.cachix.org-1:DpRUyj7h7V830dp/i6Nti+NEO2/nhblbov/8MW7Rqoo="
           "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
