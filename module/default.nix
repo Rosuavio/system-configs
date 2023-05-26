@@ -100,6 +100,8 @@ in
         options.nix.nixPath.default;
 
       settings = {
+        experimental-features = [ "nix-command" "flakes" ];
+
         # Note: It seems like some of these subsituters might be better configured by the users.
         # Currenrly that requires that they are "trusted" users, this is less than optimal
         # but maybe preferable for the rosario accout (and maybe root?).
