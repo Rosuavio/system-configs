@@ -16,21 +16,21 @@ tests as the amount of tests grow.
     1. No change - Avoid having to run any special changes in tests to have the
     tests best refelect what it will be like to use the environment.
     2. Test environment - The test environment can be changed to make things esier
-    to test (like virtual configuration of the VM emulating a mechine running the
+    to test (like virtual configuration of the VM emulating a machine running the
     software). This is not so bad because the software is expected to run on
     various phisical configurations, and while changing settings to improve
     "testablity" does not neccisrarly reflect relisct phisical configurations, it
     does modulate settings in a space where settings are ecpected to be modulated.
     Some examples are display count and resolutions, memory, cpu, graphical and
-    storage resoruces.
+    storage resources.
     3. Test subject - Specific changes to the configuration of the software being
     tested can be made to make the software more testable. This is not preferable
     becuase it changes the actually software that will be use in a way that could
     not be usefull in real usecases adding unneeded variables while also its use
     in tests means that more relist configurations are not being tested. This
-    could neccisary to make something tesitable that would be difficult or
-    imposible otherwise.
-    One exmaple is that to improve the preformace of OCR tools that anazlise the
+    could necessary to make something tesitable that would be difficult or
+    impossible otherwise.
+    One example is that to improve the performance of OCR tools that anazlise the
     software from an external perspective, a change to the UI settings of the
     software being tested can make a big impact; like contrast, UI scale, font
     and font size.
@@ -44,27 +44,27 @@ configurable to enable tests.
 ### Colors and contrast
 
 Different combinations of front colors and background colors can
-dramaticly effect the preformance of OCR
+dramaticly effect the performance of OCR
 
 This dose not seem easily do-able from the VM/test environment level.
 This might be something that can be done in a display server/wayland
 compositer.
-I had succes configureing regreet with
+I had success configuring regreet with
 Regreet
 'GTK.application_prefer_dark_theme = true;'
-regreet can be totally customsied in apperance which is very helpfull.
+regreet can be totally customised in appearance which is very helpful.
 
 ### Front
 
 The font can sometimes be changed globally and certain fonts are desiged
-to be easier for OCR to recgonise.
+to be easier for OCR to recognise.
 
-Controling the font is not fesiable thre the VM/test environment.
-I can change what fronts are avaible to the OS globally and I might even
+Controlling the font is not feasible threw the VM/test environment.
+I can change what fronts are available to the OS globally and I might even
 be able to change **some** global defaults for fonts, but its is very
-posible that some apps will ignore such defaults or use a mix of fonts,
+possible that some apps will ignore such defaults or use a mix of fonts,
 this global config is unreliable.
-I had succes configureing regreet with
+I had success configuring regreet with
 Global
 fonts.fonts = [ pkgs.inconsolata ];
 Regreet
@@ -75,11 +75,11 @@ Regreet
 Increasting the font sizes to 16-32 ish can improve ocr a lot
 This ushally needed to be configured on a per app basis
 
-Contorls much like the font section.
+Controls much like the font section.
 
 ### Playing with font rendering options
 
-Can make a diffrence in the text it effects
+Can make a difference in the text it effects
 
 Similar control story to the #Font section
 fonts.fontconfig = {
@@ -90,7 +90,7 @@ fonts.fontconfig = {
 
 ### Resolution
 
-Inconsitant in efficacy, but should be hight enough. (The default seems fine)
+Inconsistent in efficacy, but should be high enough. (The default seems fine)
 
 Can easily be configured from the VM.
 virtualisation.qemu.options = [ -device fooo,xres=XXX,yres=YYY ]
@@ -99,7 +99,7 @@ virtualisation.qemu.options = [ -device fooo,xres=XXX,yres=YYY ]
 
 Ushally threw whatever window manager or de like thing
 In creasing the resolution ushally dose not cause the UI to scale,
-and leave the UI elements as really small, but if the UI is scalled
+and leave the UI elements as really small, but if the UI is scaled
 up with the resolution it gives more pixels for each charciter which
 can improve OCR
 

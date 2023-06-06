@@ -94,7 +94,7 @@ in
     time.timeZone = "America/New_York";
 
     nix = {
-      # Remove defualt vaule for `nixos-config` from nixPath as I don't use it.
+      # Remove default value for `nixos-config` from nixPath as I don't use it.
       nixPath = lib.filter
         (path: !lib.hasPrefix "nixos-config=" path)
         options.nix.nixPath.default;
@@ -108,7 +108,7 @@ in
 
         # Note: It seems like some of these subsituters might be better configured by the users.
         # Currenrly that requires that they are "trusted" users, this is less than optimal
-        # but maybe preferable for the rosario accout (and maybe root?).
+        # but maybe preferable for the rosario account (and maybe root?).
         # TODO: Invesitage
         substituters = [
           "https://rosuavio-personal.cachix.org"
@@ -143,12 +143,12 @@ in
             });
 
           loginSwayConfig = pkgs.writeText "greetd-sway-config" ''
-            # Changeing the scale can improve OCR in tests scripts
+            # Changing the scale can improve OCR in tests scripts
             # TODO: Make this configuable for the test env
             # output "Virtual-1" scale 1
 
-            # #wlgreet is currently borken on 22.11, its version does not find wayland libs
-            # would like to use it when posible
+            # #wlgreet is currently broken on 22.11, its version does not find wayland libs
+            # would like to use it when possible
             # https://github.com/NixOS/nixpkgs/pull/210464#issuecomment-1437583852
             exec "${lib.getExe pkgs.greetd.regreet} --config ${greetdConfig}; swaymsg exit"
 

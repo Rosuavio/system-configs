@@ -34,7 +34,7 @@ in
         memorySize = 1024 * 4;
         diskSize = 1024 * 2;
         cores = 2;
-        # NOTE: Blindly coppied from
+        # NOTE: Blindly copied from
         # https://discourse.nixos.org/t/problem-with-sway-in-nixos-rebuild-build-vm-how-to-configure-vm/20263/3
         qemu.options = [
           "-vga none"
@@ -59,6 +59,7 @@ in
         excludes = [ "^nix\\/.*$" ];
       };
       markdownlint.enable = true;
+      typos.enable = true;
     };
 
     settings = {
