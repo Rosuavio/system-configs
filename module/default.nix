@@ -104,10 +104,6 @@ in
           "@wheel"
         ];
 
-        # Note: It seems like some of these subsituters might be better configured by the users.
-        # Currenrly that requires that they are "trusted" users, this is less than optimal
-        # but maybe preferable for the rosario account (and maybe root?).
-        # TODO: Invesitage
         substituters = [
           "https://rosuavio-personal.cachix.org"
         ];
