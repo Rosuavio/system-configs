@@ -93,12 +93,10 @@ in
 
     time.timeZone = "America/New_York";
 
-    nix = {
-      # Remove default value for `nixos-config` from nixPath as I don't use it.
-      nixPath = lib.filter
-        (path: !lib.hasPrefix "nixos-config=" path)
-        options.nix.nixPath.default;
+    system.disableInstallerTools = true;
 
+    nix = {
+      nixPath = [ ];
       settings = {
 
         trusted-users = [
