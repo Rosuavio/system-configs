@@ -16,7 +16,7 @@ in
     , pkgs ? import nixpkgs { }
     }:
     pkgs.writeShellScriptBin "nixos-rebuild" ''
-      exec ${pkgs.nixos-rebuild}/bin/nixos-rebuild \
+      exec /run/current-system/sw/bin/nixos-rebuild \
         -I nixpkgs=${nixpkgs} \
         -I nixos-config=${nixos-config} \
         "$@"

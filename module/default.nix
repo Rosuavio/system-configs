@@ -93,8 +93,6 @@ in
 
     time.timeZone = "America/New_York";
 
-    system.disableInstallerTools = true;
-
     nix = {
       nixPath = [ ];
       settings = {
