@@ -13,6 +13,10 @@ in
     boot = {
       supportedFilesystems = [ "zfs" ];
       initrd.supportedFilesystems = [ "zfs" ];
+
+      # Broken: Shows a spinner when asking for encryption password
+      # Can still input the password but there is no visual inducation or feedback
+      # boot.plymouth.enable = true;
     };
 
     hardware = {
