@@ -29,6 +29,8 @@ in
 
   boot.kernelModules = [ "btqca" "btusb" "hci_qca" "hci_uart" "sg" "btintel" ];
 
+  boot.plymouth.enable = true;
+
   hardware = {
     openrazer = {
       enable = true;
