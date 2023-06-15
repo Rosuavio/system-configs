@@ -11,6 +11,34 @@ in
       ./default.nix
     ];
 
+  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
+  boot.kernelModules = [ "kvm-intel" ];
+
+  fileSystems = {
+    "/" = {
+      device = "zpool/local/root";
+      fsType = "zfs";
+    };
+    "/nix" = {
+      device = "zpool/local/nix";
+      fsType = "zfs";
+    };
+    "/persist" = {
+      device = "zpool/safe/persist";
+      fsType = "zfs";
+    };
+    "/home" = {
+      device = "zpool/safe/home";
+      fsType = "zfs";
+    };
+    "/boot" = {
+      device = "/dev/disk/by-uuid/AF3D-55A6";
+      fsType = "vfat";
+    };
+  };
+
+  powerManagement.cpuFreqGovernor = "powersave";
+
   # TODO: Validate I want the effects of this.
   services.thermald.enable = true;
   services.udisks2.enable = true;
