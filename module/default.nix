@@ -54,7 +54,9 @@ in
       };
       openssh = {
         enable = true;
-        gatewayPorts = "clientspecified";
+        settings = {
+          GatewayPorts = "clientspecified";
+        };
       };
 
       fwupd.enable = true;
