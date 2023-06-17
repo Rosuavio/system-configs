@@ -165,7 +165,7 @@ in
         "${pkgs.dbus}/bin/dbus-run-session ${lib.getExe pkgs.sway} --config ${loginSwayConfig}";
     };
 
-    system.stateVersion = "22.11";
+    system.stateVersion = "23.05";
 
     system.autoUpgrade.enable = false;
   };

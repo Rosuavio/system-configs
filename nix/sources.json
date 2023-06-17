@@ -1,14 +1,14 @@
 {
-    "nixos-22.11": {
-        "branch": "nixos-22.11",
+    "nixos-23.05": {
+        "branch": "nixos-23.05",
         "description": "Nix Packages collection",
         "homepage": "",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "93fddcf640ceca0be331210ba3101cee9d91c13d",
-        "sha256": "1lpp3vq66f5952zfba8j6pxmynsl9b1hrd1kbk9w665ggz75assq",
+        "rev": "c7ff1b9b95620ce8728c0d7bd501c458e6da9e04",
+        "sha256": "0bq722ick80qwg1k1zv1021b2x7mlwsxv10y999mh22gk7vdfmi7",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/93fddcf640ceca0be331210ba3101cee9d91c13d.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/c7ff1b9b95620ce8728c0d7bd501c458e6da9e04.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixos-hardware": {

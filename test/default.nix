@@ -1,5 +1,5 @@
 let
-  nixpkgs = (import ../nix/sources.nix)."nixos-22.11";
+  nixpkgs = (import ../nix/sources.nix)."nixos-23.05";
   pkgs = import nixpkgs { };
   nixos-lib = import (nixpkgs + "/nixos/lib") { };
 in

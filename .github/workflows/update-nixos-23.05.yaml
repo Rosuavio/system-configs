@@ -19,13 +19,13 @@ jobs:
       with:
         name: rosuavio-personal
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: nix-shell --run "niv update nixos-22.11"
+    - run: nix-shell --run "niv update nixos-23.05"
     - run: |
        git --version
        git config user.name "GitHub Actions Bot"
        git config user.email "<>"
        git checkout -b $BRANCH_NAME
-       git commit -am "Update nixos-22.11"
+       git commit -am "Update nixos-23.05"
        git push -u origin $BRANCH_NAME
     # Fallowing https://github.com/peter-evans/create-pull-request/blob/main/docs/concepts-guidelines.md#authenticating-with-github-app-generated-tokens
     # I would like to not depend on anything here
@@ -41,7 +41,7 @@ jobs:
     # https://github.com/peter-evans/create-pull-request/blob/main/docs/concepts-guidelines.md#triggering-further-workflow-runs
     - name: create pull request
       run: |
-        PR=$(gh pr create -B main -H $BRANCH_NAME --title "Update nixos-22.11" --body "Update nixos-22.11")
+        PR=$(gh pr create -B main -H $BRANCH_NAME --title "Update nixos-23.05" --body "Update nixos-23.05")
         gh pr merge $PR -d --rebase --auto
       env:
         GH_TOKEN: ${{ steps.generate-token.outputs.token }}
