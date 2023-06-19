@@ -42,9 +42,6 @@ in
   # TODO: Validate I want the effects of this.
   services.thermald.enable = true;
   services.udisks2.enable = true;
-  services.tlp.settings = {
-    CPU_SCALING_GOVERNOR_ON_AC = "performance";
-  };
 
   networking.hostName = "pulsar";
   networking.hostId = "f696fe6c";
