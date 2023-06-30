@@ -27,7 +27,39 @@ in
       ./default.nix
     ];
 
-  boot.kernelModules = [ "btqca" "btusb" "hci_qca" "hci_uart" "sg" "btintel" ];
+  boot.kernelModules = [ "kvm-amd" "btqca" "btusb" "hci_qca" "hci_uart" "sg" "btintel" ];
+
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+
+  fileSystems."/" =
+    {
+      device = "mainpool/local/root";
+      fsType = "zfs";
+    };
+
+  fileSystems."/nix" =
+    {
+      device = "mainpool/local/nix";
+      fsType = "zfs";
+    };
+
+  fileSystems."/home" =
+    {
+      device = "mainpool/safe/home";
+      fsType = "zfs";
+    };
+
+  fileSystems."/persist" =
+    {
+      device = "mainpool/safe/persist";
+      fsType = "zfs";
+    };
+
+  fileSystems."/boot" =
+    {
+      device = "/dev/disk/by-uuid/7825-1D31";
+      fsType = "vfat";
+    };
 
   boot.plymouth.enable = true;
 
