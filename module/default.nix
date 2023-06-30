@@ -128,43 +128,16 @@ in
       };
     };
 
-    services.greetd = {
+    services.greetd.enable = true;
+
+    programs.regreet = {
       enable = true;
-      settings.default_session.command =
-        let
-          greetdConfig = (pkgs.formats.toml { }).generate "regreet-config.toml"
-            (lib.optionalAttrs cfg.ocrOptimiztions {
-              GTK = {
-                font_name = "Inconsolata 16";
-                application_prefer_dark_theme = true;
-              };
-            });
-
-          loginSwayConfig = pkgs.writeText "greetd-sway-config" ''
-            # Changing the scale can improve OCR in tests scripts
-            # TODO: Make this configuable for the test env
-            # output "Virtual-1" scale 1
-
-            # #wlgreet is currently broken on 22.11, its version does not find wayland libs
-            # would like to use it when possible
-            # https://github.com/NixOS/nixpkgs/pull/210464#issuecomment-1437583852
-            exec "${lib.getExe pkgs.greetd.regreet} --config ${greetdConfig}; swaymsg exit"
-
-            # TODO: This does not seem to be working, invesitage
-            bindsym Mod4+shift+e exec swaynag \
-              -t warning \
-              -m 'What do you want to do?' \
-              -b 'Poweroff' 'systemctl poweroff' \
-              -b 'Reboot' 'systemctl reboot'
-
-            # This is a fix for long load times, invesitage
-            # ref: https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start
-            # ref: https://github.com/swaywm/sway/issues/5732
-            # TODO: Test it
-            exec "dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP"
-          '';
-        in
-        "${pkgs.dbus}/bin/dbus-run-session ${lib.getExe pkgs.sway} --config ${loginSwayConfig}";
+      settings = lib.mkIf cfg.ocrOptimiztions {
+        GTK = {
+          font_name = "Inconsolata 16";
+          application_prefer_dark_theme = true;
+        };
+      };
     };
 
     system.stateVersion = "23.05";
