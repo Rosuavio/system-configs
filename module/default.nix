@@ -85,6 +85,15 @@ in
 
     networking.networkmanager.enable = true;
 
+    services.avahi = {
+      enable = true;
+      nssmdns = true;
+      publish = {
+        enable = true;
+        addresses = true;
+      };
+    };
+
     environment.etc."NetworkManager/system-connections" = {
       source = "/persist/etc/NetworkManager/system-connections/";
     };
