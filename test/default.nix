@@ -47,6 +47,7 @@ nixos-lib.runTest {
 
       testScript = ''
         machine.start()
+        machine.succeed("dfdskjfhdskfh")
         machine.wait_for_unit("greetd")
         machine.wait_for_text("Welcome back!")
       '';
