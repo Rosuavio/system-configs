@@ -8,6 +8,8 @@ nixos-lib.runTest {
     {
       name = "graphical-login";
 
+      meta.timeout = 900;
+
       nodes.machine = {
         imports = [
           ../module
