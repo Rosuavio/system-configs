@@ -19,4 +19,4 @@ jobs:
     - run: nix-shell --run "echo OK"
     - run: nix-shell --run "pre-commit run --all-files"
     - run: nix-build -A vm
-    - run: nix-build test
+    - run: nix-build test --check
