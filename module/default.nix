@@ -88,6 +88,8 @@ in
       timeout = null;
     };
 
+    boot.initrd.systemd.enable = true;
+
     networking.networkmanager.enable = true;
 
     services.avahi = {
