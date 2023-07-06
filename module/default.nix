@@ -34,6 +34,11 @@ in
     security.polkit.enable = true;
     security.pam.services.swaylock = { };
 
+    security.tpm2 = {
+      enable = true;
+      tctiEnvironment.enable = true;
+    };
+
     environment.pathsToLink = [ "/share/backgrounds/sway" ];
 
     xdg.portal = {
