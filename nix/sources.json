@@ -1,4 +1,16 @@
 {
+    "lanzaboote": {
+        "branch": "v0.3.0",
+        "description": "Secure Boot for NixOS [maintainers=@blitz @raitobezarius @nikstur]",
+        "homepage": "",
+        "owner": "nix-community",
+        "repo": "lanzaboote",
+        "rev": "64b903ca87d18cef2752c19c098af275c6e51d63",
+        "sha256": "1ysq47isagsdaisni4sbhhmbmihbhpgxj8lnzxl4kgfx2iwm7ghm",
+        "type": "tarball",
+        "url": "https://github.com/nix-community/lanzaboote/archive/64b903ca87d18cef2752c19c098af275c6e51d63.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "nixos-23.05": {
         "branch": "nixos-23.05",
         "description": "Nix Packages collection",

@@ -5,6 +5,7 @@ let
   hostName = "polaris";
 
   inherit (sources) nixos-hardware;
+  lanzaboote = import sources.lanzaboote;
   suspend-fix = pkgs.writeShellScriptBin "suspend-fix" ''
     #!/usr/bin/env bash
     isenabled=`cat /proc/acpi/wakeup | grep $1 | grep -o enabled`
@@ -18,6 +19,7 @@ in
 {
   imports =
     [
+      lanzaboote.nixosModules.lanzaboote
       "${nixos-hardware}/common/cpu/amd"
       "${nixos-hardware}/common/cpu/amd/pstate.nix"
       "${nixos-hardware}/common/gpu/amd"
@@ -30,6 +32,13 @@ in
   boot.kernelModules = [ "kvm-amd" "btqca" "btusb" "hci_qca" "hci_uart" "sg" "btintel" ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/etc/secureboot/";
+  };
 
   fileSystems."/" =
     {
@@ -103,6 +112,7 @@ in
   environment.systemPackages = with pkgs; [
     ntfs3g
     fuse3
+    sbctl
   ];
 
   users.users = {
