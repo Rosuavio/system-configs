@@ -37,6 +37,10 @@ in
     };
   };
 
+  environment.etc."NetworkManager/system-connections" = {
+    sources = "/persist/etc/NetworkManager/system-connections/";
+  };
+
   powerManagement.cpuFreqGovernor = "powersave";
 
   # TODO: Validate I want the effects of this.
