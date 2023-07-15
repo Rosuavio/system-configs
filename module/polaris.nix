@@ -6,15 +6,6 @@ let
 
   inherit (sources) nixos-hardware impermanence;
   lanzaboote = import sources.lanzaboote;
-  suspend-fix = pkgs.writeShellScriptBin "suspend-fix" ''
-    #!/usr/bin/env bash
-    isenabled=`cat /proc/acpi/wakeup | grep $1 | grep -o enabled`
-    if [ $isenabled == "enabled" ]; then
-      echo $1 > /proc/acpi/wakeup
-    else
-      exit
-    fi
-  '';
 in
 {
   imports =
@@ -193,12 +184,15 @@ in
     # B550I-AORUS-PRO-AX
     suspend-fix = {
       enable = true;
+
       wants = [ "multi-user.target" ];
       after = [ "multi-user.target" ];
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
+        Description = "Disable GPP0 to fix suspend issue";
         Type = "simple";
-        ExecStart = lib.getExe suspend-fix + " GPP0";
+        ExecStart =
+          "${pkgs.bashInteractive}/bin/sh -c \"${pkgs.coreutils}/bin/echo GPP0 > /proc/acpi/wakeup\"";
       };
     };
   };
