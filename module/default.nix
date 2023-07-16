@@ -1,13 +1,28 @@
 { config, options, pkgs, lib, ... }:
 let
   cfg = config;
+
+  sources = import ../nix/sources.nix;
+  lanzaboote = import sources.lanzaboote;
 in
 {
+  imports = [
+    lanzaboote.nixosModules.lanzaboote
+  ];
+
   options = {
     ocrOptimiztions = lib.mkEnableOption "ocrOptimiztions";
   };
 
   config = {
+    boot.loader.systemd-boot.enable = lib.mkForce false;
+
+    boot.lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot/";
+    };
+
+
     nixpkgs.config.allowUnfree = true;
 
     boot = {
@@ -76,10 +91,6 @@ in
 
     # TODO 2020.01.24 (RP) - Find a way to change the esp to "/esp"
     boot.loader = {
-      systemd-boot = {
-        enable = true;
-        editor = false;
-      };
       efi = {
         # efiSysMountPoint = "/boot/efi";
         canTouchEfiVariables = true;

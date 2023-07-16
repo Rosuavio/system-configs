@@ -5,12 +5,10 @@ let
   hostName = "polaris";
 
   inherit (sources) nixos-hardware impermanence;
-  lanzaboote = import sources.lanzaboote;
 in
 {
   imports =
     [
-      lanzaboote.nixosModules.lanzaboote
       "${impermanence}/nixos.nix"
       "${nixos-hardware}/common/cpu/amd"
       "${nixos-hardware}/common/cpu/amd/pstate.nix"
@@ -24,13 +22,6 @@ in
   boot.kernelModules = [ "kvm-amd" "btqca" "btusb" "hci_qca" "hci_uart" "sg" "btintel" ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
-
-  boot.loader.systemd-boot.enable = lib.mkForce false;
-
-  boot.lanzaboote = {
-    enable = true;
-    pkiBundle = "/etc/secureboot/";
-  };
 
   fileSystems."/" =
     {
