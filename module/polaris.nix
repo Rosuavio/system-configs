@@ -171,6 +171,7 @@ in
 
 
   boot.plymouth.enable = true;
+  boot.zfs.forceImportRoot = false;
 
   hardware = {
     openrazer = {
