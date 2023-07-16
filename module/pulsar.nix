@@ -15,10 +15,6 @@ in
   boot.kernelModules = [ "kvm-intel" ];
 
   fileSystems = {
-    "/" = {
-      device = "zpool/local/root";
-      fsType = "zfs";
-    };
     "/nix" = {
       device = "zpool/local/nix";
       fsType = "zfs";
@@ -26,6 +22,7 @@ in
     "/persist" = {
       device = "zpool/safe/persist";
       fsType = "zfs";
+      neededForBoot = true;
     };
     "/home" = {
       device = "zpool/safe/home";
@@ -35,10 +32,6 @@ in
       device = "/dev/disk/by-uuid/AF3D-55A6";
       fsType = "vfat";
     };
-  };
-
-  environment.etc."NetworkManager/system-connections" = {
-    source = "/persist/etc/NetworkManager/system-connections/";
   };
 
   powerManagement.cpuFreqGovernor = "powersave";
