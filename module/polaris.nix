@@ -18,7 +18,7 @@ in
       ./default.nix
     ];
 
-  boot.kernelModules = [ "kvm-amd" "btqca" "btusb" "hci_qca" "hci_uart" "sg" "btintel" ];
+  boot.kernelModules = [ "kvm-amd" ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "uas" "usbhid" "sd_mod" ];
 
