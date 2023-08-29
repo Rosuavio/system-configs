@@ -57,23 +57,13 @@ in
     };
   };
 
-  systemd.services = {
-    # Maybe try to figure out whats going on with this device. Try a bios update.
-    # B550I-AORUS-PRO-AX
-    suspend-fix = {
-      enable = true;
-
-      wants = [ "multi-user.target" ];
-      after = [ "multi-user.target" ];
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig = {
-        Description = "Disable GPP0 to fix suspend issue";
-        Type = "simple";
-        ExecStart =
-          "${pkgs.bashInteractive}/bin/sh -c \"${pkgs.coreutils}/bin/echo GPP0 > /proc/acpi/wakeup\"";
-      };
-    };
-  };
+  # Fix for B550I-AORUS-PRO-AX
+  # TODO: Instead of greping threw I would like a static path to check
+  powerManagement.powerDownCommands = ''
+    if (grep "GPP0.*enabled" /proc/acpi/wakeup > /dev/null); then
+        echo GPP0 > /proc/acpi/wakeup
+    fi
+  '';
 
   services = {
     openssh = {
