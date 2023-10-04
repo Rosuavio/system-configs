@@ -14,7 +14,7 @@ in
   ];
 
   options = {
-    ocrOptimiztions = lib.mkEnableOption "ocrOptimiztions";
+    ocrOptimizations = lib.mkEnableOption "ocrOptimizations";
   };
 
   config = {
@@ -158,7 +158,7 @@ in
         # https://github.com/rharish101/ReGreet/issues/33
         "/var/cache/regreet/cache.toml"
       ]
-      # `config.services.openssh.hostKeys` is used to spcify keys present on
+      # `config.services.openssh.hostKeys` is used to specify keys present on
       # the system. The sshd config will point to them. If they do not exist
       # they will be generated before sshd is started. We want to pressist them
       # to avoid the machine generating new ssh keys on every boot.
@@ -227,7 +227,7 @@ in
 
     environment.systemPackages = with pkgs; [
       nix
-    ] ++ lib.optional cfg.ocrOptimiztions pkgs.inconsolata;
+    ] ++ lib.optional cfg.ocrOptimizations pkgs.inconsolata;
 
     i18n.extraLocaleSettings = {
       LC_CTYPE = "en_US.UTF-8";
@@ -268,7 +268,7 @@ in
 
     programs.regreet = {
       enable = true;
-      settings = lib.mkIf cfg.ocrOptimiztions {
+      settings = lib.mkIf cfg.ocrOptimizations {
         GTK = {
           font_name = "Inconsolata 16";
           application_prefer_dark_theme = true;
