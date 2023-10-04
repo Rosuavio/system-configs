@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 let
   sources = import ../nix/sources.nix;
 
@@ -15,6 +16,10 @@ in
   boot.kernelModules = [ "kvm-intel" ];
 
   fileSystems = {
+    "/" = {
+      device = "zpool/local/root";
+      fsType = "zfs";
+    };
     "/nix" = {
       device = "zpool/local/nix";
       fsType = "zfs";
@@ -33,6 +38,28 @@ in
       fsType = "vfat";
     };
   };
+
+  boot.initrd.systemd.services.rollback = {
+    description = "Rollback ZFS datasets to a pristine state";
+    wantedBy = [
+      "initrd.target"
+    ];
+    after = [
+      "zfs-import-zpool.service"
+    ];
+    before = [
+      "sysroot.mount"
+    ];
+    path = with pkgs; [
+      zfs
+    ];
+    unitConfig.DefaultDependencies = "no";
+    serviceConfig.Type = "oneshot";
+    script = ''
+      zfs rollback -r zpool/local/root@blank && echo "rollback complete"
+    '';
+  };
+
 
   powerManagement.cpuFreqGovernor = "powersave";
 

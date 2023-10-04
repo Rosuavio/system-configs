@@ -25,19 +25,6 @@ in
       pkiBundle = "/etc/secureboot/";
     };
 
-    fileSystems."/" = {
-      device = "tmpfs";
-      fsType = "tmpfs";
-      options = [
-        "defaults"
-        # For some reason setting this to 2G kept lanzaboote from building
-        # Something about /tmp not having space, but I thought /tmp is on its
-        # own tmpfs and defaults to 50%.
-        "size=4G"
-        "mode=755"
-      ];
-    };
-
     nixpkgs.config.allowUnfree = true;
 
     boot = {
