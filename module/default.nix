@@ -263,6 +263,14 @@ in
       };
     };
 
+    # NOTE: This option should help with offline rebuilds, but it has the
+    # downside of taking a whole lot of space.
+    # https://search.nixos.org/options?show=system.includeBuildDependencies
+    #
+    # TODO: See if making simple config changes requires network without this.
+    # Like at the "change a file in /etc" level
+    # system.includeBuildDependencies = true;
+
     system.stateVersion = "23.05";
 
     system.autoUpgrade.enable = false;
