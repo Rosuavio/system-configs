@@ -6,6 +6,37 @@ let
   lanzaboote = import sources.lanzaboote;
 
   inherit (sources) impermanence;
+
+  startupUser = pkgs.writeShellApplication {
+    name = "startupUser";
+    runtimeInputs = [ ];
+    # Might want to have a few more user friendly and user configurable
+    # fallbacks before /bin/sh.
+    text = ''exec "''${USER_ENTRY:-/bin/sh}"'';
+  };
+
+  defaultingUser = (pkgs.writeTextDir "share/wayland-sessions/Default.desktop" ''
+    [Desktop Entry]
+    Name=Default
+    Comment=User defaulting desktop environment
+    Exec=${startupUser}/bin/startupUser
+    TryExec=${startupUser}/bin/startupUser
+    Type=Application
+  '') // {
+    providedSessions = [ "Default" ];
+  };
+
+  fallback = (pkgs.writeTextDir "share/wayland-sessions/Fallback.desktop" ''
+    [Desktop Entry]
+    Name=Fallback
+    Comment=Fallback desktop environment
+    Exec=/bin/sh
+    TryExec=/bin/sh
+    Type=Application
+  '') // {
+    providedSessions = [ "Fallback" ];
+  };
+
 in
 {
   imports = [
@@ -262,6 +293,15 @@ in
         };
       };
     };
+
+    services.xserver.displayManager.sessionPackages = [
+      # Here for most login managers who know to check $XDG_DATA_DIRS/share/{xsessions, wayland-sessions}
+      # Of the greeters the one that checks using XDG_DATA_DIRS (probably) are qtgreetd and regreet.
+      # Most of the rest of the greeters I know of dont check for sessions files and dont provide selectable options
+      # Or they check the static paths /usr/share/{xsessions, wayland-sessions}
+      defaultingUser
+      fallback
+    ];
 
     # NOTE: This option should help with offline rebuilds, but it has the
     # downside of taking a whole lot of space.
