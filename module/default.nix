@@ -282,14 +282,15 @@ in
       };
     };
 
-    services.greetd.enable = true;
-
-    programs.regreet = {
+    services.greetd = {
       enable = true;
-      settings = lib.mkIf cfg.ocrOptimizations {
-        GTK = {
-          font_name = "Inconsolata 16";
-          application_prefer_dark_theme = true;
+      settings = {
+        default_session = {
+          # Dont want to have to specifically --sessions want it to use default sessions dir XDG_DATA_DIRS/share/{xsessions, wayland-sessions}
+          # tuigreet does not check XDG_DATA_DIRS for sessions it checks /usr/share/wayland-sessions
+          # tuigreet stores last logined in users into /var/cache/ !!! ARGGG!!! Again!!! First regreet now this argggg!
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --user-menu --remember --remember-user-session"
+            + " --sessions ${cfg.services.xserver.displayManager.sessionData.desktops}/share/wayland-sessions";
         };
       };
     };

@@ -24,7 +24,7 @@ nixos-lib.runTest {
 
         virtualisation.qemu.options = [
           "-vga none"
-          "-device virtio-gpu-pci"
+          "-device virtio-gpu-pci,edid=on,xres=1024,yres=600"
         ];
 
         environment.variables = {
@@ -48,7 +48,7 @@ nixos-lib.runTest {
       testScript = ''
         machine.start()
         machine.wait_for_unit("greetd")
-        machine.wait_for_text("Welcome back!")
+        machine.wait_for_text("Authenticate into machine")
       '';
     }
   ];
