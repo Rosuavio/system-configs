@@ -1,4 +1,4 @@
-name: update-nixpkgs
+name: niv-update
 on:
   workflow_dispatch:
   schedule:
@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Get date
-      run: echo "BRANCH_NAME=nixpkgs-update-$(date +'%Y-%m-%dT%H%M%S')" >> $GITHUB_ENV
+      run: echo "BRANCH_NAME=niv-update-$(date +'%Y-%m-%dT%H%M%S')" >> $GITHUB_ENV
     - uses: actions/checkout@v4
     - uses: cachix/install-nix-action@v23
       with:
@@ -19,13 +19,13 @@ jobs:
       with:
         name: rosuavio-personal
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: nix-shell --run "niv update nixos-23.05"
+    - run: nix-shell --run "niv update"
     - run: |
        git --version
        git config user.name "GitHub Actions Bot"
        git config user.email "<>"
        git checkout -b $BRANCH_NAME
-       git commit -am "Update nixos-23.05"
+       git commit -am "niv update"
        git push -u origin $BRANCH_NAME
     # Fallowing https://github.com/peter-evans/create-pull-request/blob/main/docs/concepts-guidelines.md#authenticating-with-github-app-generated-tokens
     # I would like to not depend on anything here
@@ -41,7 +41,7 @@ jobs:
     # https://github.com/peter-evans/create-pull-request/blob/main/docs/concepts-guidelines.md#triggering-further-workflow-runs
     - name: create pull request
       run: |
-        PR=$(gh pr create -B main -H $BRANCH_NAME --title "Update nixos-23.05" --body "Update nixos-23.05")
+        PR=$(gh pr create -B main -H $BRANCH_NAME --title "niv update" --body "Update nix dependencies with niv")
         gh pr merge $PR -d --rebase --auto
       env:
         GH_TOKEN: ${{ steps.generate-token.outputs.token }}
