@@ -1,4 +1,4 @@
-{ config, options, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 let
   cfg = config;
 
@@ -43,10 +43,6 @@ in
     lanzaboote.nixosModules.lanzaboote
     "${impermanence}/nixos.nix"
   ];
-
-  options = {
-    ocrOptimizations = lib.mkEnableOption "ocrOptimizations";
-  };
 
   config = {
     boot.loader.systemd-boot.enable = lib.mkForce false;
@@ -193,8 +189,6 @@ in
       wlr.enable = true;
     };
 
-    fonts.enableDefaultFonts = true;
-
     services = {
       zfs.autoScrub.enable = true;
       pcscd.enable = true;
@@ -245,7 +239,7 @@ in
 
     environment.systemPackages = with pkgs; [
       nix
-    ] ++ lib.optional cfg.ocrOptimizations pkgs.inconsolata;
+    ];
 
     i18n.extraLocaleSettings = {
       LC_CTYPE = "en_US.UTF-8";

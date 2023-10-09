@@ -30,8 +30,6 @@ nixos-lib.runTest {
         environment.variables = {
           "WLR_RENDERER" = "pixman";
         };
-
-        ocrOptimizations = true;
       };
 
       interactive.nodes.machine = {
