@@ -296,6 +296,9 @@ in
       };
     };
 
+    # Dont think I need this at the system level (yet).
+    fonts.fontconfig.enable = false;
+
     services.greetd = {
       enable = true;
       settings = {
