@@ -22,6 +22,12 @@ in
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "uas" "usbhid" "sd_mod" ];
 
+  fileSystems."/" =
+    {
+      device = "mainpool/local/root";
+      fsType = "zfs";
+    };
+
   fileSystems."/nix" =
     {
       device = "mainpool/local/nix";
@@ -46,6 +52,27 @@ in
       device = "/dev/disk/by-uuid/7825-1D31";
       fsType = "vfat";
     };
+
+  boot.initrd.systemd.services.rollback = {
+    description = "Rollback ZFS datasets to a pristine state";
+    wantedBy = [
+      "initrd.target"
+    ];
+    after = [
+      "zfs-import-mainpool.service"
+    ];
+    before = [
+      "sysroot.mount"
+    ];
+    path = with pkgs; [
+      zfs
+    ];
+    unitConfig.DefaultDependencies = "no";
+    serviceConfig.Type = "oneshot";
+    script = ''
+      zfs rollback -r mainpool/local/root@blank && echo "rollback complete"
+    '';
+  };
 
   boot.plymouth.enable = true;
   boot.zfs.forceImportRoot = false;
