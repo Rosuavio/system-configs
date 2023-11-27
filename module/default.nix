@@ -266,13 +266,17 @@ in
       };
     };
 
+    virtualisation.docker = {
+      enable = true;
+    };
+
     users.mutableUsers = false;
 
     users.users = {
       rosario = {
         description = "Rosario Pulella";
         isNormalUser = true;
-        extraGroups = [ "wheel" "networkmanager" "video" "adbusers" ];
+        extraGroups = [ "wheel" "networkmanager" "video" "adbusers" "docker" ];
       };
     };
 
