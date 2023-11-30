@@ -1,4 +1,4 @@
-{ sources ? import ./nix/sources.nix
+{ sources ? import ./npins
 , nixpkgs ? sources."nixos-23.05"
 , ...
 }:
@@ -52,18 +52,18 @@ in
       statix.enable = true;
       deadnix = {
         enable = true;
-        excludes = [ "^nix\\/.*$" ];
+        excludes = [ "^npnis\\/.*$" ];
       };
       nixpkgs-fmt = {
         enable = true;
-        excludes = [ "^nix\\/.*$" ];
+        excludes = [ "^npnis\\/.*$" ];
       };
       markdownlint.enable = true;
       typos.enable = true;
     };
 
     settings = {
-      statix.ignore = [ "nix/**" ];
+      statix.ignore = [ "npins/**" ];
     };
   };
 }

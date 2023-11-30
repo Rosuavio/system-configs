@@ -1,5 +1,5 @@
 let
-  sources = import ./nix/sources.nix;
+  sources = import ./npins;
   pkgs = import sources.nixpkgs-unstable { };
 
   default = import ./default.nix { };
@@ -9,7 +9,7 @@ pkgs.mkShell {
 
   packages = [
     pkgs.git
-    pkgs.niv
+    pkgs.npins
   ];
 
   shellHook = ''

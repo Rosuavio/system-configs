@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  sources = import ../nix/sources.nix;
+  sources = import ../npins;
 
   inherit (sources) nixos-hardware;
 in

@@ -2,7 +2,7 @@
 let
   cfg = config;
 
-  sources = import ../nix/sources.nix;
+  sources = import ../npins;
   lanzaboote = import sources.lanzaboote;
 
   inherit (sources) impermanence;
