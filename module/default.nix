@@ -187,6 +187,11 @@ in
       enable = true;
       # gtkUsePortal = true;
       wlr.enable = true;
+      # TODO maybe we can rid of system wide portal configs
+      # Users can set configs in `~/.conifg/xdg-desktop-portal/portals.conf`
+      # And `~/.conifg/xdg-desktop-portal/DEKSTOP.conf`
+      # https://github.com/flatpak/xdg-desktop-portal/blob/1.18.2/doc/portals.conf.rst.in
+      config.common.default = [ "wlr" "gtk" ];
     };
 
     services = {
