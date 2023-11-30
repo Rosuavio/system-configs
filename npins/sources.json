@@ -26,11 +26,11 @@
       "url": "https://api.github.com/repos/nix-community/lanzaboote/tarball/v0.3.0",
       "hash": "1ysq47isagsdaisni4sbhhmbmihbhpgxj8lnzxl4kgfx2iwm7ghm"
     },
-    "nixos-23.05": {
+    "nixos-23.11": {
       "type": "Channel",
-      "name": "nixos-23.05",
-      "url": "https://releases.nixos.org/nixos/23.05/nixos-23.05.4981.5b528f99f73c/nixexprs.tar.xz",
-      "hash": "1psdfcl5rjid66dhc8c0dfdrgqk5x76drwcads149pa45vbnri8k"
+      "name": "nixos-23.11",
+      "url": "https://releases.nixos.org/nixos/23.11/nixos-23.11.928.50aa30a13c4a/nixexprs.tar.xz",
+      "hash": "0amb465xi9pwgsb51d252gs7vv40ilzfhpclih7kc70r6s89jfrc"
     },
     "nixos-hardware": {
       "type": "Git",

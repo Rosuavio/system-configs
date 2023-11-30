@@ -1,5 +1,5 @@
 { sources ? import ./npins
-, nixpkgs ? sources."nixos-23.05"
+, nixpkgs ? sources."nixos-23.11"
 , ...
 }:
 let

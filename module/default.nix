@@ -310,7 +310,7 @@ in
     # Like at the "change a file in /etc" level
     # system.includeBuildDependencies = true;
 
-    system.stateVersion = "23.05";
+    system.stateVersion = "23.11";
 
     system.autoUpgrade.enable = false;
   };
