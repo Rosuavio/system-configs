@@ -181,8 +181,6 @@ in
         config.services.openssh.hostKeys;
     };
 
-    environment.pathsToLink = [ "/share/backgrounds/sway" ];
-
     xdg.portal = {
       enable = true;
       # gtkUsePortal = true;
