@@ -181,6 +181,14 @@ in
         config.services.openssh.hostKeys;
     };
 
+    # I want to manage fonts in the home-config but hm does not quite hit the
+    # make it here yet.
+    # TODO: Manage fonts in home config
+    # see https://github.com/nix-community/home-manager/pull/2732
+    # see https://github.com/nix-community/home-manager/pull/1268
+    # https://github.com/nix-community/home-manager/issues/2186
+    # fonts.fontconfig.enable = false;
+
     xdg.portal = {
       enable = true;
       # gtkUsePortal = true;
