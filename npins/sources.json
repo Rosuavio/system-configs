@@ -29,8 +29,8 @@
     "nixos-23.11": {
       "type": "Channel",
       "name": "nixos-23.11",
-      "url": "https://releases.nixos.org/nixos/23.11/nixos-23.11.1779.cf28ee258fd5/nixexprs.tar.xz",
-      "hash": "137w4widclsarhax4j6yf5vz6j6w7d3wqlximlrycf6rcwh0nyl2"
+      "url": "https://releases.nixos.org/nixos/23.11/nixos-23.11.2004.1e2e384c5b7c/nixexprs.tar.xz",
+      "hash": "0vr3q0kayqk5gn109i2ry2l4b3d0z5xswlpgi6xlxa8jy8s4cxlx"
     },
     "nixos-hardware": {
       "type": "Git",
