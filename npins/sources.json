@@ -8,9 +8,9 @@
         "repo": "impermanence"
       },
       "branch": "master",
-      "revision": "0f317c2e9e56550ce12323eb39302d251618f5b5",
-      "url": "https://github.com/nix-community/impermanence/archive/0f317c2e9e56550ce12323eb39302d251618f5b5.tar.gz",
-      "hash": "120775fbfar2x1s5ijkxnvb8p0mmk3dlbq0lzfhsi0csfynp98ki"
+      "revision": "123e94200f63952639492796b8878e588a4a2851",
+      "url": "https://github.com/nix-community/impermanence/archive/123e94200f63952639492796b8878e588a4a2851.tar.gz",
+      "hash": "07c146m0i47a0f9gajhh8h9l5ndy5744dmvbbqhvm28pnl319qmd"
     },
     "lanzaboote": {
       "type": "GitRelease",
@@ -29,8 +29,8 @@
     "nixos-23.11": {
       "type": "Channel",
       "name": "nixos-23.11",
-      "url": "https://releases.nixos.org/nixos/23.11/nixos-23.11.2004.1e2e384c5b7c/nixexprs.tar.xz",
-      "hash": "0vr3q0kayqk5gn109i2ry2l4b3d0z5xswlpgi6xlxa8jy8s4cxlx"
+      "url": "https://releases.nixos.org/nixos/23.11/nixos-23.11.2130.d65bceaee0fb/nixexprs.tar.xz",
+      "hash": "095ny8xa5kcyjrgyakxma1qpzgdiyibw9xgayj8gqwaa8rv2f3sc"
     },
     "nixos-hardware": {
       "type": "Git",
@@ -47,8 +47,8 @@
     "nixpkgs-unstable": {
       "type": "Channel",
       "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-24.05pre559581.aa9d4729cbc9/nixexprs.tar.xz",
-      "hash": "04d8m0kh426kn2dvk5006as68al1dcv9wlizyclq69pas9xd1l3h"
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-24.05pre561758.d6863cbcbbb8/nixexprs.tar.xz",
+      "hash": "0gxm9qvlaj202ngrvlnivypbiclxizyd6axq9ip5ddj6mf8mfpaj"
     },
     "pre-commit-hooks.nix": {
       "type": "Git",
