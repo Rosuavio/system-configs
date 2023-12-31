@@ -8,9 +8,9 @@
         "repo": "impermanence"
       },
       "branch": "master",
-      "revision": "123e94200f63952639492796b8878e588a4a2851",
-      "url": "https://github.com/nix-community/impermanence/archive/123e94200f63952639492796b8878e588a4a2851.tar.gz",
-      "hash": "07c146m0i47a0f9gajhh8h9l5ndy5744dmvbbqhvm28pnl319qmd"
+      "revision": "033643a45a4a920660ef91caa391fbffb14da466",
+      "url": "https://github.com/nix-community/impermanence/archive/033643a45a4a920660ef91caa391fbffb14da466.tar.gz",
+      "hash": "16x067nv146igqfxq8b3a0rf6715z5vpl0hz27dp2a29s6lr8944"
     },
     "lanzaboote": {
       "type": "GitRelease",
@@ -29,8 +29,8 @@
     "nixos-23.11": {
       "type": "Channel",
       "name": "nixos-23.11",
-      "url": "https://releases.nixos.org/nixos/23.11/nixos-23.11.2130.d65bceaee0fb/nixexprs.tar.xz",
-      "hash": "095ny8xa5kcyjrgyakxma1qpzgdiyibw9xgayj8gqwaa8rv2f3sc"
+      "url": "https://releases.nixos.org/nixos/23.11/nixos-23.11.2217.d02d818f22c7/nixexprs.tar.xz",
+      "hash": "047zq3b8w0zqpx6dq064dsbbqly8sfyjxln6dlx0mzai8w1iaa3j"
     },
     "nixos-hardware": {
       "type": "Git",
@@ -40,15 +40,15 @@
         "repo": "nixos-hardware"
       },
       "branch": "master",
-      "revision": "7763c6fd1f299cb9361ff2abf755ed9619ef01d6",
-      "url": "https://github.com/nixos/nixos-hardware/archive/7763c6fd1f299cb9361ff2abf755ed9619ef01d6.tar.gz",
-      "hash": "02mar3llcm6xaz7200bzl36a5vaqgjmvi8vsq0vg3cb85bsn416k"
+      "revision": "22ae59fec26591ef72ce4ccb5538c42c5f090fe3",
+      "url": "https://github.com/nixos/nixos-hardware/archive/22ae59fec26591ef72ce4ccb5538c42c5f090fe3.tar.gz",
+      "hash": "1hizb34kjcdj35yr46996630hi98k3v4y0ydqrb51hpcs337khm0"
     },
     "nixpkgs-unstable": {
       "type": "Channel",
       "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-24.05pre561758.d6863cbcbbb8/nixexprs.tar.xz",
-      "hash": "0gxm9qvlaj202ngrvlnivypbiclxizyd6axq9ip5ddj6mf8mfpaj"
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-24.05pre562963.e1fa12d4f6c6/nixexprs.tar.xz",
+      "hash": "16wdn7j17y9yradygdbdlhlcpqa432hp5ah49cm3b0caqymbgw6h"
     },
     "pre-commit-hooks.nix": {
       "type": "Git",
@@ -58,9 +58,9 @@
         "repo": "pre-commit-hooks.nix"
       },
       "branch": "master",
-      "revision": "007a45d064c1c32d04e1b8a0de5ef00984c419bc",
-      "url": "https://github.com/cachix/pre-commit-hooks.nix/archive/007a45d064c1c32d04e1b8a0de5ef00984c419bc.tar.gz",
-      "hash": "1sc00h8fag2hpavsdy8br2s10w7k2dk3v89fmajx2w8yc1ff2r93"
+      "revision": "9d3d7e18c6bc4473d7520200d4ddab12f8402d38",
+      "url": "https://github.com/cachix/pre-commit-hooks.nix/archive/9d3d7e18c6bc4473d7520200d4ddab12f8402d38.tar.gz",
+      "hash": "1jp04li76xy2cbydm31qpr4pxr8pyvjbdgxhq3xv5sckyfcvw5qv"
     }
   },
   "version": 3
