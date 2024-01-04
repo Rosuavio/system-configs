@@ -29,8 +29,8 @@
     "nixos-23.11": {
       "type": "Channel",
       "name": "nixos-23.11",
-      "url": "https://releases.nixos.org/nixos/23.11/nixos-23.11.2217.d02d818f22c7/nixexprs.tar.xz",
-      "hash": "047zq3b8w0zqpx6dq064dsbbqly8sfyjxln6dlx0mzai8w1iaa3j"
+      "url": "https://releases.nixos.org/nixos/23.11/nixos-23.11.2451.2d2ea8eab9e4/nixexprs.tar.xz",
+      "hash": "1hr80c2nv49ybz785nv7gqk975a9d06dzxm4b2g5c0cr3rb3pk69"
     },
     "nixos-hardware": {
       "type": "Git",
@@ -40,15 +40,15 @@
         "repo": "nixos-hardware"
       },
       "branch": "master",
-      "revision": "22ae59fec26591ef72ce4ccb5538c42c5f090fe3",
-      "url": "https://github.com/nixos/nixos-hardware/archive/22ae59fec26591ef72ce4ccb5538c42c5f090fe3.tar.gz",
-      "hash": "1hizb34kjcdj35yr46996630hi98k3v4y0ydqrb51hpcs337khm0"
+      "revision": "8e34f33464d77bea2d5cf7dc1066647b1ad2b324",
+      "url": "https://github.com/nixos/nixos-hardware/archive/8e34f33464d77bea2d5cf7dc1066647b1ad2b324.tar.gz",
+      "hash": "0wcgcm76laiccdsb5ngamm5rrrnxj55jvlmph1jic8cyd543kq4n"
     },
     "nixpkgs-unstable": {
       "type": "Channel",
       "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-24.05pre562963.e1fa12d4f6c6/nixexprs.tar.xz",
-      "hash": "16wdn7j17y9yradygdbdlhlcpqa432hp5ah49cm3b0caqymbgw6h"
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-24.05pre565199.63143ac2c918/nixexprs.tar.xz",
+      "hash": "04k3q5224dnyn82yacbq9q9gnsrn6ig043mpzpsky885ikg7i2zw"
     },
     "pre-commit-hooks.nix": {
       "type": "Git",
