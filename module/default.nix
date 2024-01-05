@@ -304,6 +304,11 @@ in
       };
     };
 
+    systemd.services.greetd.serviceConfig = {
+      # Prevents some boot logs from showing on tuigreet.
+      TTYReset = true;
+    };
+
     services.xserver.displayManager.sessionPackages = [
       # Here for most login managers who know to check $XDG_DATA_DIRS/share/{xsessions, wayland-sessions}
       # Of the greeters the one that checks using XDG_DATA_DIRS (probably) are qtgreetd and regreet.
