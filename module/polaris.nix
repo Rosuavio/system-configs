@@ -11,6 +11,7 @@ in
     [
       "${nixos-hardware}/common/cpu/amd"
       "${nixos-hardware}/common/cpu/amd/pstate.nix"
+      "${nixos-hardware}/common/gpu/amd"
       "${nixos-hardware}/common/pc/ssd"
       "${nixos-hardware}/common/pc"
       "${nixos-hardware}/common/hidpi.nix"
