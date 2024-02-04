@@ -45,23 +45,38 @@ in
   ];
 
   config = {
-    boot.loader.systemd-boot.enable = lib.mkForce false;
-
-    boot.lanzaboote = {
-      enable = true;
-      pkiBundle = "/etc/secureboot/";
-    };
-
-    nixpkgs.config.allowUnfree = true;
-
     boot = {
       supportedFilesystems = [ "zfs" ];
-      initrd.supportedFilesystems = [ "zfs" ];
+
+      loader = {
+        # Needed to enable lanzaboote
+        systemd-boot.enable = lib.mkForce false;
+
+        # TODO 2020.01.24 (RP) - Find a way to change the esp to "/esp"
+        efi = {
+          # efiSysMountPoint = "/boot/efi";
+          canTouchEfiVariables = true;
+        };
+
+        timeout = null;
+      };
+
+      initrd = {
+        supportedFilesystems = [ "zfs" ];
+        systemd.enable = true;
+      };
+
+      lanzaboote = {
+        enable = true;
+        pkiBundle = "/etc/secureboot/";
+      };
 
       # Broken: Shows a spinner when asking for encryption password
       # Can still input the password but there is no visual inducation or feedback
-      # boot.plymouth.enable = true;
+      # plymouth.enable = true;
     };
+
+    nixpkgs.config.allowUnfree = true;
 
     hardware = {
       enableAllFirmware = true;
@@ -75,12 +90,14 @@ in
       pulseaudio.enable = false;
     };
 
-    security.polkit.enable = true;
-    security.pam.services.swaylock = { };
+    security = {
+      tpm2 = {
+        enable = true;
+        tctiEnvironment.enable = true;
+      };
 
-    security.tpm2 = {
-      enable = true;
-      tctiEnvironment.enable = true;
+      pam.services.swaylock = { };
+      polkit.enable = true;
     };
 
     environment.persistence."/persist" = {
@@ -224,18 +241,6 @@ in
     };
 
     services.dbus.packages = [ pkgs.dconf ];
-
-    # TODO 2020.01.24 (RP) - Find a way to change the esp to "/esp"
-    boot.loader = {
-      efi = {
-        # efiSysMountPoint = "/boot/efi";
-        canTouchEfiVariables = true;
-      };
-
-      timeout = null;
-    };
-
-    boot.initrd.systemd.enable = true;
 
     networking.networkmanager.enable = true;
 

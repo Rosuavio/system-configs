@@ -12,8 +12,34 @@ in
       ./default.nix
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot = {
+    initrd = {
+      availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
+
+      systemd.services.rollback = {
+        description = "Rollback ZFS datasets to a pristine state";
+        wantedBy = [
+          "initrd.target"
+        ];
+        after = [
+          "zfs-import-zpool.service"
+        ];
+        before = [
+          "sysroot.mount"
+        ];
+        path = with pkgs; [
+          zfs
+        ];
+        unitConfig.DefaultDependencies = "no";
+        serviceConfig.Type = "oneshot";
+        script = ''
+          zfs rollback -r zpool/local/root@blank && echo "rollback complete"
+        '';
+      };
+
+      kernelModules = [ "kvm-intel" ];
+    };
+  };
 
   fileSystems = {
     "/" = {
@@ -38,28 +64,6 @@ in
       fsType = "vfat";
     };
   };
-
-  boot.initrd.systemd.services.rollback = {
-    description = "Rollback ZFS datasets to a pristine state";
-    wantedBy = [
-      "initrd.target"
-    ];
-    after = [
-      "zfs-import-zpool.service"
-    ];
-    before = [
-      "sysroot.mount"
-    ];
-    path = with pkgs; [
-      zfs
-    ];
-    unitConfig.DefaultDependencies = "no";
-    serviceConfig.Type = "oneshot";
-    script = ''
-      zfs rollback -r zpool/local/root@blank && echo "rollback complete"
-    '';
-  };
-
 
   powerManagement.cpuFreqGovernor = "powersave";
 

@@ -18,64 +18,66 @@ in
       ./default.nix
     ];
 
-  boot.kernelModules = [ "kvm-amd" ];
+  boot = {
+    initrd = {
+      availableKernelModules = [ "nvme" "xhci_pci" "ahci" "uas" "usbhid" "sd_mod" ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "uas" "usbhid" "sd_mod" ];
+      systemd.services.rollback = {
+        description = "Rollback ZFS datasets to a pristine state";
+        wantedBy = [
+          "initrd.target"
+        ];
+        after = [
+          "zfs-import-mainpool.service"
+        ];
+        before = [
+          "sysroot.mount"
+        ];
+        path = with pkgs; [
+          zfs
+        ];
+        unitConfig.DefaultDependencies = "no";
+        serviceConfig.Type = "oneshot";
+        script = ''
+          zfs rollback -r mainpool/local/root@blank && echo "rollback complete"
+        '';
+      };
+    };
 
-  fileSystems."/" =
-    {
+    kernelModules = [ "kvm-amd" ];
+    plymouth.enable = true;
+    zfs.forceImportRoot = false;
+  };
+
+
+
+  fileSystems = {
+    "/" = {
       device = "mainpool/local/root";
       fsType = "zfs";
     };
 
-  fileSystems."/nix" =
-    {
+    "/nix" = {
       device = "mainpool/local/nix";
       fsType = "zfs";
     };
 
-  fileSystems."/home" =
-    {
+    "/home" = {
       device = "mainpool/safe/home";
       fsType = "zfs";
     };
 
-  fileSystems."/persist" =
-    {
+    "/persist" = {
       device = "mainpool/safe/persist";
       fsType = "zfs";
       neededForBoot = true;
     };
 
-  fileSystems."/boot" =
-    {
+    "/boot" = {
       device = "/dev/disk/by-uuid/7825-1D31";
       fsType = "vfat";
     };
-
-  boot.initrd.systemd.services.rollback = {
-    description = "Rollback ZFS datasets to a pristine state";
-    wantedBy = [
-      "initrd.target"
-    ];
-    after = [
-      "zfs-import-mainpool.service"
-    ];
-    before = [
-      "sysroot.mount"
-    ];
-    path = with pkgs; [
-      zfs
-    ];
-    unitConfig.DefaultDependencies = "no";
-    serviceConfig.Type = "oneshot";
-    script = ''
-      zfs rollback -r mainpool/local/root@blank && echo "rollback complete"
-    '';
   };
-
-  boot.plymouth.enable = true;
-  boot.zfs.forceImportRoot = false;
 
   hardware = {
     openrazer = {
