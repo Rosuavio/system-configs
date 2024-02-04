@@ -19,8 +19,8 @@ tests as the amount of tests grow.
     to test (like virtual configuration of the VM emulating a machine running the
     software). This is not so bad because the software is expected to run on
     various physical configurations, and while changing settings to improve
-    "testability" does not necessarily reflect realistic physical configurations, it
-    does modulate settings in a space where settings are expected to be modulated.
+    "testability" does not necessarily reflect realistic physical configurations,
+    it does modulate settings in a space where settings are expected to be modulated.
     Some examples are display count and resolutions, memory, cpu, graphical and
     storage resources.
     3. Test subject - Specific changes to the configuration of the software being
