@@ -12,4 +12,5 @@ nixos typically provides.
 
 To use the modules import `./module/`
 
-> NOTE: You can use this repo as a derivation using npins, nix-thunk and the like.
+> NOTE: You can use this repo as a derivation using npins, nix-thunk and the
+like.
