@@ -8,9 +8,9 @@
         "repo": "impermanence"
       },
       "branch": "master",
-      "revision": "033643a45a4a920660ef91caa391fbffb14da466",
-      "url": "https://github.com/nix-community/impermanence/archive/033643a45a4a920660ef91caa391fbffb14da466.tar.gz",
-      "hash": "16x067nv146igqfxq8b3a0rf6715z5vpl0hz27dp2a29s6lr8944"
+      "revision": "cd13c2917eaa68e4c49fea0ff9cada45440d7045",
+      "url": "https://github.com/nix-community/impermanence/archive/cd13c2917eaa68e4c49fea0ff9cada45440d7045.tar.gz",
+      "hash": "1pdsiwynmyxhkmh4d8wj56fsh8zb529vqwbwibgi1h4lvy7vi889"
     },
     "lanzaboote": {
       "type": "GitRelease",
@@ -29,8 +29,8 @@
     "nixos-23.11": {
       "type": "Channel",
       "name": "nixos-23.11",
-      "url": "https://releases.nixos.org/nixos/23.11/nixos-23.11.3496.a77ab169a83a/nixexprs.tar.xz",
-      "hash": "053mccnia361dbazyjafss9clfcld5g90shxpyhp2gxj0kx82wab"
+      "url": "https://releases.nixos.org/nixos/23.11/nixos-23.11.3920.25e3d4c0d359/nixexprs.tar.xz",
+      "hash": "1wx3qxnz0pm3ld7k6gfvlxs7cv8dvj26917c3136ihvg7znfj1i8"
     },
     "nixos-hardware": {
       "type": "Git",
@@ -40,15 +40,15 @@
         "repo": "nixos-hardware"
       },
       "branch": "master",
-      "revision": "f84eaffc35d1a655e84749228cde19922fcf55f1",
-      "url": "https://github.com/nixos/nixos-hardware/archive/f84eaffc35d1a655e84749228cde19922fcf55f1.tar.gz",
-      "hash": "0n4bj80a3kq9j5y1ycwpzyjhwywl747s7zxkrbqlwxdjn5xc4bjf"
+      "revision": "83e571bb291161682b9c3ccd48318f115143a550",
+      "url": "https://github.com/nixos/nixos-hardware/archive/83e571bb291161682b9c3ccd48318f115143a550.tar.gz",
+      "hash": "141hafgsl1jlr47iczwnz5xlwpkdnl7bykyzzipkby0rp01z29yw"
     },
     "nixpkgs-unstable": {
       "type": "Channel",
       "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-24.05pre576907.160b762eda6d/nixexprs.tar.xz",
-      "hash": "0qvl5bsqqxapkx923pyy5xalwxdli545h718si023l4sy87yg52n"
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-24.05pre579369.79a13f1437e1/nixexprs.tar.xz",
+      "hash": "1hhcjbxk39ybigjxm4am8p32nsffj87qxcsnkrr4z3smwb4pv5as"
     },
     "pre-commit-hooks.nix": {
       "type": "Git",
