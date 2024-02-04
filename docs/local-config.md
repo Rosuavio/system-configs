@@ -14,7 +14,7 @@ the [default cofing location](#default-config-location).
 Good
 
 1. Dose not require `sudo` to edit.
-2. No need for user to remember paramiter or config.
+2. No need for user to remember parameter or config.
 3. Users cannot build the default config unintentionally.
 
 Bad
@@ -22,7 +22,7 @@ Bad
 1. Hard or impossible for other users to find.
 2. Hard or impossible for other users to read.
 3. Could be impossible users with `nixos-rebuild switch` to edit.
-4. Pushes users with `nixos-rebuild switch` to maintain separate cofnigs for the
+4. Pushes users with `nixos-rebuild switch` to maintain separate configs for the
 system. Possibly fighting over what config to run.
 5. If the user forgets to enter the shell they get none of the benefits of the
 context of the local project.
@@ -60,7 +60,7 @@ Bad
 1. Hard or impossible for other users to find.
 2. Hard or impossible for other users to read.
 3. Could be impossible users with `nixos-rebuild switch` to edit.
-4. Pushes users with `nixos-rebuild switch` to maintain separate cofnigs for the
+4. Pushes users with `nixos-rebuild switch` to maintain separate configs for the
 system. Possibly fighting over what config to run.
 5. Requires extra config for `NIX_PATH` or remembering
 `-I nixos-config=./foo.nix` with every call to `nixos-rebuild`. This can lead
@@ -74,7 +74,7 @@ command with the `-I nixos-config=./configuration.nix` option.
 
 Good
 
-1. No need to remember paramiter or config, becuase tools are configured in a way
+1. No need to remember parameter or config, because tools are configured in a way
 that is sensitive to the context of the local project.
 
 Bad
@@ -93,7 +93,7 @@ Good
 Bad
 
 1. User's must always provide the config they want to build to `nixos-rebuild`
-(even when its apprent)
+(even when its apparent)
 
 ## Other Solutions
 
@@ -141,7 +141,7 @@ shells and build could help too.
 
 ## NOTES
 
-Can build config anywhere  
+Can build config anywhere
 `nixos-rebuild` can be told to use a different path than the default to find
 the default config. This is done by setting the `NIX_PATH` variable
 `nixos-config` to another location. The `NIX_PATH` can be manipulated by
