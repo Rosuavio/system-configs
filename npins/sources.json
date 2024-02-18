@@ -29,8 +29,8 @@
     "nixos-23.11": {
       "type": "Channel",
       "name": "nixos-23.11",
-      "url": "https://releases.nixos.org/nixos/23.11/nixos-23.11.4166.20f65b86b648/nixexprs.tar.xz",
-      "hash": "07q1gprh4qqb140mh06b5zjz2rrq64hggjbr11nsvdg9rrq9f0c2"
+      "url": "https://releases.nixos.org/nixos/23.11/nixos-23.11.4377.1d1817869c47/nixexprs.tar.xz",
+      "hash": "1p54j3xdwpi9h00p94gy27gvv74dgbx001s0djh8586bmq7ipyfm"
     },
     "nixos-hardware": {
       "type": "Git",
@@ -40,15 +40,15 @@
         "repo": "nixos-hardware"
       },
       "branch": "master",
-      "revision": "6e5cc385fc8cf5ca6495d70243074ccdea9f64c7",
-      "url": "https://github.com/nixos/nixos-hardware/archive/6e5cc385fc8cf5ca6495d70243074ccdea9f64c7.tar.gz",
-      "hash": "1ps4ff4a0wa65lb4dxk0l8wxlc071i9fgpv5bpy9hcwzkv6r6cid"
+      "revision": "106d3fec43bcea19cb2e061ca02531d54b542ce3",
+      "url": "https://github.com/nixos/nixos-hardware/archive/106d3fec43bcea19cb2e061ca02531d54b542ce3.tar.gz",
+      "hash": "1x2hhpkvna2bqmkmyb5mqj446v4ildfyslra3spsmwmsi0jh2vx3"
     },
     "nixpkgs-unstable": {
       "type": "Channel",
       "name": "nixpkgs-unstable",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-24.05pre581827.442d40799238/nixexprs.tar.xz",
-      "hash": "1bswi0bqz16pvw4j8bzr9b54bfa5i27j5abpiy8xmhrr78c5lhv3"
+      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-24.05pre585159.6e2f00c83911/nixexprs.tar.xz",
+      "hash": "0imsm1cn22zvzms04k5jdwd3rgdf1v4mkvkzih892kfrqr0x2z58"
     },
     "pre-commit-hooks.nix": {
       "type": "Git",
@@ -58,9 +58,9 @@
         "repo": "pre-commit-hooks.nix"
       },
       "branch": "master",
-      "revision": "0db2e67ee49910adfa13010e7f012149660af7f0",
-      "url": "https://github.com/cachix/pre-commit-hooks.nix/archive/0db2e67ee49910adfa13010e7f012149660af7f0.tar.gz",
-      "hash": "0h7hi28za0m71r8mj934rz27hlblmwgskdr5nipnjj3jjpzyhf00"
+      "revision": "5df5a70ad7575f6601d91f0efec95dd9bc619431",
+      "url": "https://github.com/cachix/pre-commit-hooks.nix/archive/5df5a70ad7575f6601d91f0efec95dd9bc619431.tar.gz",
+      "hash": "08wz19qh89bi15b7y1a5dcdj6l4bar39k0jfhcy60glywkmn1qrk"
     }
   },
   "version": 3
