@@ -1,5 +1,7 @@
 # System configs
 
+> Repository moved to <https://git.sr.ht/~rosuavio/system-configs>
+
 Personal system configs and supporting infra.
 
 ## Why?
